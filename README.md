@@ -1,1 +1,1 @@
-# atos-webplatform
+# Atos Webplatform
