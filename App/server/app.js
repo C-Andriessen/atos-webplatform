@@ -23,3 +23,5 @@ app.use(cookieParser());
 app.use(require("morgan")("tiny"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use("/seeder", require("./routers/seederRouter"));
