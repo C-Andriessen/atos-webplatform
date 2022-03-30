@@ -24,4 +24,5 @@ app.use(require("morgan")("tiny"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+app.use("/api/user", require("./routers/userRouter"));
 app.use("/seeder", require("./routers/seederRouter"));
