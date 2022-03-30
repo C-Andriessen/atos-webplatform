@@ -1,12 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
-const User = require("./models/userModel");
-const Role = require("./models/roleModel");
-const Comment = require("./models/commentModel");
-const Post = require("./models/postModel");
-
-
 
 require("dotenv").config();
 
