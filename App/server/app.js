@@ -22,3 +22,6 @@ app.use(express.json());
 
 app.use("/seeder", require("./routers/seederRouter"));
 app.use("/api/user", require("./routers/userRouter"));
+
+//test frontend to backend connection
+app.use("/test", require('./routers/testRouter'));
