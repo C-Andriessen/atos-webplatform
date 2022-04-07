@@ -39,18 +39,10 @@
             font-size: 20px;
           }
 
-          button {
-            background-color: $white;
-            border: none;
-            border-radius: 10pt;
-            width: 40px;
-            height: 40px;
-
-            svg {
-                width: 20px;
-                height: 20px;
-              }
-          }
+        svg {
+            width: 20px;
+            height: 20px;
+        }
           
   }
 
@@ -74,7 +66,7 @@
     }
 
     button {
-        background-color: $primary;
+        // background-color: $primary;
 
         svg {
             fill: $white;
@@ -82,8 +74,8 @@
     }
   }
 
-  span.error {
-    color: rgb(99, 0, 0);
-    font-size: 15px;
-    font-weight: bold;
-  }
+//   .error {
+//     background-color: rgba(255, 4, 4, .4);
+//     font-size: 15px;
+//     font-weight: bold;
+//   }

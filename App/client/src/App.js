@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './sass/App.scss';
 import Header from './components/Header';
 import Routing from './components/Routing';
+import 'bootstrap/dist/js/bootstrap.min.js'
 
 function App() {
 

@@ -42,7 +42,7 @@ function Header (props) {
             <Link to='/register' className='text-darkmode'>Registreren</Link>
             <Link to='/login' className='login-button text-darkmode'>Inloggen</Link>
         </nav>
-        <button onClick={handleClick}>Lightmode</button>
+        <button onClick={handleClick} className='btn btn-primary'>Lightmode</button>
     </header>
     }
 }

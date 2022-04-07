@@ -27,19 +27,29 @@ function Landing (props) {
 
     function handleSubmit(ev) {
         ev.preventDefault();
+        const locationErrTooltip = document.querySelector('.locationErrTooltip');
+        const serviceErrTooltip = document.querySelector('.serviceErrTooltip');
+        const schoolErrTooltip = document.querySelector('.schoolErrTooltip');
+
         if (location.length === 0) {
+            locationErrTooltip.style.display = 'block'
             setErrorLocation('Vul de locatie in')
         } else {
+            locationErrTooltip.style.display = 'none'
             setErrorLocation('')
         }
         if (service.length === 0) {
+            serviceErrTooltip.style.display = 'block'
             setErrorService('Vul in wat voor klus u zoekt')
         } else {
+            serviceErrTooltip.style.display = 'none'
             setErrorService('')
         }
         if (school.length === 0) {
+            schoolErrTooltip.style.display = 'block'
             setErrorSchool('Vul uw voorkeurs school in')
         } else {
+            schoolErrTooltip.style.display = 'none'
             setErrorSchool('')
         }
     }
@@ -53,22 +63,22 @@ function Landing (props) {
                 <p>Vul hier de locatie in waar u bent en wat 
                     de klus inhoud waar u hulp bij nodig heeft</p>
                 <form method='get'  className='hero-form' onSubmit={handleSubmit}>
-                    <div className='flex-column'>
+                    <div className='flex-column position-relative'>
                     <label>Locatie</label>
                     <input name='locatie' value={location} onChange={handleLocationChange} placeholder='Groningen' />
-                    <span className='error'>{errorLocation}</span>
+                    <div className='locationErrTooltip invalid-tooltip'>{errorLocation}</div>
                     </div>
-                    <div className='flex-column px-3 line-left'>
+                    <div className='flex-column px-3 line-left position-relative'>
                         <label>Welke service</label>
                     <input name='service' value={service} onChange={handleServiceChange} placeholder='Software Developer' />
-                    <span className='error'>{errorService}</span>
+                    <div className='serviceErrTooltip invalid-tooltip'>{errorService}</div>
                     </div>
-                    <div className='flex-column line-left pl-2'>
+                    <div className='flex-column line-left pl-2 position-relative'>
                     <label>Voorkeur school</label>
                     <input name='school' value={school} onChange={handleSchoolChange} placeholder='Noorderpoort' />
-                    <span className='error'>{errorSchool}</span>
+                    <div className='schoolErrTooltip invalid-tooltip'>{errorSchool}</div>
                     </div>
-                    <button type='submit' className='ml-2'><FaSearch /></button>
+                    <button type='submit' className='btn btn-light'><FaSearch /></button>
                 </form>
             </div>
                 <img src={hero_img} alt="logo" className='hero'/>
@@ -82,22 +92,22 @@ function Landing (props) {
                 <p className='text-darkmode'>Vul hier de locatie in waar u bent en wat 
                     de klus inhoud waar u hulp bij nodig heeft</p>
                 <form method='get'  className='hero-form darkmode' onSubmit={handleSubmit}>
-                    <div className='flex-column'>
+                    <div className='flex-column position-relative'>
                     <label>Locatie</label>
                     <input name='locatie' value={location} onChange={handleLocationChange} placeholder='Groningen' />
-                    <span className='error'>{errorLocation}</span>
+                    <div className='locationErrTooltip invalid-tooltip'>{errorLocation}</div>
                     </div>
-                    <div className='flex-column px-3 line-left'>
+                    <div className='flex-column px-3 line-left position-relative'>
                         <label>Welke service</label>
                     <input name='service' value={service} onChange={handleServiceChange} placeholder='Software Developer' />
-                    <span className='error'>{errorService}</span>
+                    <div className='serviceErrTooltip invalid-tooltip'>{errorService}</div>
                     </div>
-                    <div className='flex-column line-left pl-2'>
+                    <div className='flex-column line-left pl-2 position-relative'>
                     <label>Voorkeur school</label>
                     <input name='school' value={school} onChange={handleSchoolChange} placeholder='Noorderpoort' />
-                    <span className='error'>{errorSchool}</span>
+                    <div className='schoolErrTooltip invalid-tooltip'>{errorSchool}</div>
                     </div>
-                    <button type='submit' className='ml-2'><FaSearch /></button>
+                    <button type='submit' className='ml-2 btn btn-primary'><FaSearch /></button>
                 </form>
             </div>
                 <img src={hero_img} alt="logo" className='hero'/>
