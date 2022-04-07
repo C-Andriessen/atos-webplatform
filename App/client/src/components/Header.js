@@ -1,13 +1,20 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../logo.svg'
 
-function Header () {
+function Header (props) {
 
-    const [mode, setMode] = useState('dark');
+    function handleClick () {
+        if (props.mode === 'dark') {
+            document.cookie = 'mode=light'
+            window.location.reload()
+        } else if (props.mode === 'light') {
+            document.cookie = 'mode=dark';
+            window.location.reload()
+        }
+    }
 
 
-    if (mode === 'light') {
+    if (props.mode === 'light') {
     return <header>
         <img src={logo} alt="logo" />
         <nav className='header'>
@@ -20,20 +27,22 @@ function Header () {
             <Link to='/register'>Registreren</Link>
             <Link to='/login' className='login-button'>Inloggen</Link>
         </nav>
+        <button onClick={handleClick}>Darkmode</button>
     </header>
-    } else if (mode === 'dark') {
+    } else if (props.mode === 'dark') {
         return <header>
         <img src={logo} alt="logo" />
         <nav className='header'>
-            <Link to='/' className='darkmode'>Home</Link>
-            <Link to='/explanation' className='darkmode'>Hoe werkt het</Link>
-            <Link to='/excercises' className='darkmode'>Opdrachten</Link>
-            <Link to='/students' className='darkmode'>Studenten</Link>
+            <Link to='/' className='text-darkmode'>Home</Link>
+            <Link to='/explanation' className='text-darkmode'>Hoe werkt het</Link>
+            <Link to='/excercises' className='text-darkmode'>Opdrachten</Link>
+            <Link to='/students' className='text-darkmode'>Studenten</Link>
         </nav>
         <nav className='header'>
-            <Link to='/register' className='darkmode'>Registreren</Link>
-            <Link to='/login' className='login-button darkmode'>Inloggen</Link>
+            <Link to='/register' className='text-darkmode'>Registreren</Link>
+            <Link to='/login' className='login-button text-darkmode'>Inloggen</Link>
         </nav>
+        <button onClick={handleClick}>Lightmode</button>
     </header>
     }
 }

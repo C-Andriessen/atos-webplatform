@@ -1,0 +1,89 @@
+.line-left {
+    border-left: 1px solid #D6D6D6;
+  }
+
+// light mode
+.hero-form {
+    background-color: $primary;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 87px;
+    display: flex;
+    position: absolute;
+    z-index: 2;
+    align-items: center;
+    border-radius: 12pt;
+    padding: 0 30px;
+        input {
+            margin: 0px 0px;
+            border: none;
+            color: $white;
+            background-color: $primary;
+            font-weight: bold;
+            font-size: 20px;
+            width: 200px;
+
+            &::placeholder {
+                color: $white;
+                opacity: 75%;
+            }
+
+            &:focus {
+                outline: none !important;
+                border-color: transparent !important;
+                box-shadow: none;
+            }
+        }
+
+        label{
+            color: $white;
+            font-size: 20px;
+          }
+
+          button {
+            background-color: $white;
+            border: none;
+            border-radius: 10pt;
+            width: 40px;
+            height: 40px;
+
+            svg {
+                width: 20px;
+                height: 20px;
+              }
+          }
+          
+  }
+
+
+  //darkmode
+
+  .hero-form.darkmode {
+    background-color: $white;
+
+    input {
+    color: #9D49F2;
+    background-color: $white;
+
+        &::placeholder {
+            color: $primary;
+        }
+    }
+
+    label {
+        color: $secondary-light;
+    }
+
+    button {
+        background-color: $primary;
+
+        svg {
+            fill: $white;
+        }
+    }
+  }
+
+  span.error {
+    color: rgb(99, 0, 0);
+    font-size: 15px;
+    font-weight: bold;
+  }

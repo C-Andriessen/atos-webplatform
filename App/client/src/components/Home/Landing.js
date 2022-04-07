@@ -1,10 +1,9 @@
 import {useState} from 'react';
+import { FaSearch } from 'react-icons/fa'
 import hero_img from './hero.jpg';
-import search_icon from './search-icon.svg'
 
-function Landing () {
-
-    const [mode, setMode] = useState('dark')
+function Landing (props) {
+    console.log(props.mode);
 
     const [location, setLocation] = useState('')
     const [service, setService] = useState('')
@@ -43,17 +42,14 @@ function Landing () {
         } else {
             setErrorSchool('')
         }
-        // alert(school)
-        // alert(location)
-        // alert(service)
     }
 
 
-    if (mode === 'light') {
+    if (props.mode === 'light') {
         return (
             <div className='landing'>
             <div className='text-section'>
-                <h1 className='landing-text-light'>Zoek een <span className='text-purple'>student</span> die past bij uw <span className='text-purple'>klus</span></h1>
+                <h1 className='landing-text'>Zoek een <span className='text-purple'>student</span> die past bij uw <span className='text-purple'>klus</span></h1>
                 <p>Vul hier de locatie in waar u bent en wat 
                     de klus inhoud waar u hulp bij nodig heeft</p>
                 <form method='get'  className='hero-form' onSubmit={handleSubmit}>
@@ -72,21 +68,18 @@ function Landing () {
                     <input name='school' value={school} onChange={handleSchoolChange} placeholder='Noorderpoort' />
                     <span className='error'>{errorSchool}</span>
                     </div>
-                    <button type='submit' className='ml-2'><img src={search_icon} alt='zoeken'></img></button>
+                    <button type='submit' className='ml-2'><FaSearch /></button>
                 </form>
             </div>
                 <img src={hero_img} alt="logo" className='hero'/>
         </div>
         )
-    } else if (mode === 'dark') {
-        const body = document.querySelector('body');
-        body.style.backgroundColor = '#2F3136';
-
+    } else if (props.mode === 'dark') {
         return (<>
             <div className='landing'>
             <div className='text-section'>
-                <h1 className='landing-text darkmode'>Zoek een <span className='text-purple'>student</span> die past bij uw <span className='text-purple'>klus</span></h1>
-                <p className='darkmode'>Vul hier de locatie in waar u bent en wat 
+                <h1 className='landing-text text-darkmode'>Zoek een <span className='text-purple'>student</span> die past bij uw <span className='text-purple'>klus</span></h1>
+                <p className='text-darkmode'>Vul hier de locatie in waar u bent en wat 
                     de klus inhoud waar u hulp bij nodig heeft</p>
                 <form method='get'  className='hero-form darkmode' onSubmit={handleSubmit}>
                     <div className='flex-column'>
@@ -104,7 +97,7 @@ function Landing () {
                     <input name='school' value={school} onChange={handleSchoolChange} placeholder='Noorderpoort' />
                     <span className='error'>{errorSchool}</span>
                     </div>
-                    <button type='submit' className='ml-2'><img src={search_icon} alt='zoeken'></img></button>
+                    <button type='submit' className='ml-2'><FaSearch /></button>
                 </form>
             </div>
                 <img src={hero_img} alt="logo" className='hero'/>
