@@ -73,7 +73,7 @@ function Landing (props) {
                     <input name='service' value={service} onChange={handleServiceChange} placeholder='Software Developer' />
                     <div className='serviceErrTooltip invalid-tooltip'>{errorService}</div>
                     </div>
-                    <div className='flex-column line-left pl-2 position-relative'>
+                    <div className='flex flex-column line-left pl-2 position-relative'>
                     <label>Voorkeur school</label>
                     <input name='school' value={school} onChange={handleSchoolChange} placeholder='Noorderpoort' />
                     <div className='schoolErrTooltip invalid-tooltip'>{errorSchool}</div>
@@ -107,7 +107,7 @@ function Landing (props) {
                     <input name='school' value={school} onChange={handleSchoolChange} placeholder='Noorderpoort' />
                     <div className='schoolErrTooltip invalid-tooltip'>{errorSchool}</div>
                     </div>
-                    <button type='submit' className='ml-2 btn btn-primary'><FaSearch /></button>
+                    <button type='submit' className=' btn btn-primary'><FaSearch /></button>
                 </form>
             </div>
                 <img src={hero_img} alt="logo" className='hero'/>
