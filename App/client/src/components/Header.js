@@ -1,20 +1,24 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { themeContext } from '../context/themeContext';
 import logo from '../logo.svg'
 
 function Header (props) {
 
+    const {theme} = useContext(themeContext);
+
     function handleClick () {
-        if (props.mode === 'dark') {
-            document.cookie = 'mode=light'
+        if (theme === 'dark') {
+            document.cookie = 'theme=light'
             window.location.reload()
-        } else if (props.mode === 'light') {
-            document.cookie = 'mode=dark';
+        } else if (theme === 'light') {
+            document.cookie = 'theme=dark';
             window.location.reload()
         }
     }
 
 
-    if (props.mode === 'light') {
+    if (theme === 'light') {
     return <header>
         <img src={logo} alt="logo" />
         <nav className='header'>
@@ -29,7 +33,7 @@ function Header (props) {
         </nav>
         <button onClick={handleClick}>Darkmode</button>
     </header>
-    } else if (props.mode === 'dark') {
+    } else if (theme === 'dark') {
         return <header>
         <img src={logo} alt="logo" />
         <nav className='header'>

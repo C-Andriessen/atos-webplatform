@@ -1,9 +1,11 @@
-import {useState} from 'react';
+import {useContext, useState} from 'react';
 import { FaSearch } from 'react-icons/fa'
+import { themeContext } from '../../context/themeContext';
 import hero_img from './hero.jpg';
 
-function Landing (props) {
-    console.log(props.mode);
+function Landing () {
+
+    const {theme} = useContext(themeContext);
 
     const [location, setLocation] = useState('')
     const [service, setService] = useState('')
@@ -55,7 +57,7 @@ function Landing (props) {
     }
 
 
-    if (props.mode === 'light') {
+    if (theme === 'light') {
         return (
             <div className='landing'>
             <div className='text-section'>
@@ -84,7 +86,7 @@ function Landing (props) {
                 <img src={hero_img} alt="logo" className='hero'/>
         </div>
         )
-    } else if (props.mode === 'dark') {
+    } else if (theme === 'dark') {
         return (<>
             <div className='landing'>
             <div className='text-section'>
