@@ -1,5 +1,7 @@
-function Home () {
-    return <h1>Home pagina</h1>
+import Hero from "../Home/Hero";
+
+function Home() {
+  return <Hero />;
 }
 
 export default Home;

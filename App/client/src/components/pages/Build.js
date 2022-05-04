@@ -1,10 +1,11 @@
-import Landing from "../Home/Landing";
+import Hero from "../Home/Hero";
 
-function Build (props) {
-
-    return <>
-    <Landing mode={props.mode} />
+function Build(props) {
+  return (
+    <>
+      <Hero />
     </>
+  );
 }
 
 export default Build;

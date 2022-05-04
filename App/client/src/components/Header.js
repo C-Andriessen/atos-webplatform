@@ -2,8 +2,9 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { themeContext } from '../context/themeContext';
 import logo from '../logo.svg'
+import { BsBrightnessAltHigh, BsBrightnessAltHighFill} from "react-icons/bs";
 
-function Header (props) {
+function Header () {
 
     const {theme} = useContext(themeContext);
 
@@ -31,7 +32,7 @@ function Header (props) {
             <Link to='/register'>Registreren</Link>
             <Link to='/login' className='login-button'>Inloggen</Link>
         </nav>
-        <button onClick={handleClick}>Darkmode</button>
+        <button onClick={handleClick} className='btn text-grey fs-2' ><BsBrightnessAltHighFill /></button>
     </header>
     } else if (theme === 'dark') {
         return <header>
@@ -46,7 +47,7 @@ function Header (props) {
             <Link to='/register' className='text-darkmode'>Registreren</Link>
             <Link to='/login' className='login-button text-darkmode'>Inloggen</Link>
         </nav>
-        <button onClick={handleClick} className='btn btn-primary'>Lightmode</button>
+        <button onClick={handleClick} className='btn text-light fs-2'><BsBrightnessAltHigh className='' /></button>
     </header>
     }
 }
