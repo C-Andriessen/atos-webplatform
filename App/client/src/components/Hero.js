@@ -24,7 +24,7 @@ function Hero() {
             <label className="text-lg">Welke service</label>
             <input
               className="text-primary text-lg font-bold placeholder:text-primary placeholder:opacity-50"
-              placeholder="Stucadoor"
+              placeholder="Stukadoor"
             />
           </div>
           <div className="flex flex-col px-4">

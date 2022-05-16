@@ -1,5 +1,6 @@
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import Logos from "./components/Logos";
 const body = document.querySelector("body");
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
     <>
       <Header />
       <Hero />
+      <Logos />
     </>
   );
 }
