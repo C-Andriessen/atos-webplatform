@@ -1,22 +1,24 @@
-import { Link } from 'react-router-dom';
-import logo from '../logo.svg'
+import { FaUser } from "react-icons/fa";
 
-function Header () {
-    return <header>
-        <img src={logo} alt="logo" />
-        {/* options */}
-        <nav className='header'>
-            <Link to='/'>Home</Link>
-            <Link to='/explanation'>Hoe werkt het</Link>
-            <Link to='/excercises'>Opdrachten</Link>
-            <Link to='/students'>Studenten</Link>
-        </nav>
-        {/* login/register */}
-        <nav className='header'>
-            <Link to='/register'>Registreren</Link>
-            <Link to='/login' className='login-button'>Inloggen</Link>
-        </nav>
-    </header>
+function Header() {
+  return (
+    <>
+      <header className="text-white flex items-center justify-between px-14 py-6">
+        <div className="flex items-center space-x-8">
+          <h3 className="text-3xl font-bold">
+            Student<span className="text-primary">IN</span>Work
+          </h3>
+          <nav className="flex space-x-5 text-xl">
+            <a href="http://localhost:3000">Home</a>
+            <a href="http://localhost:3000">Scholen</a>
+            <a href="http://localhost:3000">Studenten</a>
+            <a href="http://localhost:3000">Over ons</a>
+          </nav>
+        </div>
+        <FaUser className="h-10 w-6" />
+      </header>
+    </>
+  );
 }
 
 export default Header;
