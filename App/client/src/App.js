@@ -1,17 +1,9 @@
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import Logos from "./components/Logos";
+import Routing from "./components/Routing";
 const body = document.querySelector("body");
 
 function App() {
   body.style.backgroundColor = "#2F3136";
-  return (
-    <>
-      <Header />
-      <Hero />
-      <Logos />
-    </>
-  );
+  return <Routing />;
 }
 
 export default App;

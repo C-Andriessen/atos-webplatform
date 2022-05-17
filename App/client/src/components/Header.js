@@ -3,7 +3,7 @@ import { FaUser } from "react-icons/fa";
 function Header() {
   return (
     <>
-      <header className="text-white flex items-center justify-between px-14 py-6">
+      <header className="text-white flex items-center justify-between px-14 py-6 z-10 relative">
         <div className="flex items-center space-x-8">
           <h3 className="text-3xl font-bold">
             Student<span className="text-primary">IN</span>Work
@@ -15,7 +15,9 @@ function Header() {
             <a href="http://localhost:3000">Over ons</a>
           </nav>
         </div>
-        <FaUser className="h-10 w-6" />
+        <a href="http://localhost:3000/dashboard">
+          <FaUser className="h-10 w-6" />
+        </a>
       </header>
     </>
   );
