@@ -149,7 +149,7 @@ function Sidebar() {
               <p class="text-base leading-4  ">Beoordelingen</p>
             </button>
             <a
-              href="http://localhost:3000"
+              href="http://localhost:3000/"
               className="absolute bottom-10 text-primary font-bold flex items-center"
             >
               <BiExit className="mr-3" /> Ga terug
