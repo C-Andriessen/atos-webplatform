@@ -8,7 +8,7 @@ function AboutSection() {
       <div className="text-white items-center flex flex-col text-center space-y-7 mt-40">
         <h4 className="text-3xl">Over ons</h4>
         <h2 className="text-5xl font-bold">
-          Student<span className="text-primary">IN</span>Work
+          Student<span className="text-primary">IN</span>Werk
         </h2>
         <p className="text-light text-2xl w-1/2">
           Op onze website kan je kiezen uit verschillende studenten die graag

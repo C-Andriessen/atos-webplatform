@@ -6,7 +6,7 @@ function Header() {
       <header className="text-white flex items-center justify-between px-14 py-6 z-10 relative">
         <div className="flex items-center space-x-8">
           <h3 className="text-3xl font-bold">
-            Student<span className="text-primary">IN</span>Work
+            Student<span className="text-primary">IN</span>Werk
           </h3>
           <nav className="flex space-x-5 text-xl">
             <a href="http://localhost:3000">Home</a>

@@ -9,12 +9,28 @@ import {
   ClipboardIcon,
   XIcon,
 } from "@heroicons/react/outline";
+import { Link } from "react-router-dom";
 
 const navigation = [
-  { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Berichten", href: "#", icon: InboxIcon, current: false },
-  { name: "Instellingen", href: "#", icon: AdjustmentsIcon, current: false },
-  { name: "Beoordelingen", href: "#", icon: ClipboardIcon, current: false },
+  { name: "Dashboard", href: "/dashboard", icon: HomeIcon, current: true },
+  {
+    name: "Berichten",
+    href: "/dashboard/berichten",
+    icon: InboxIcon,
+    current: false,
+  },
+  {
+    name: "Instellingen",
+    href: "/dashboard/instellingen",
+    icon: AdjustmentsIcon,
+    current: false,
+  },
+  {
+    name: "Beoordelingen",
+    href: "/dashboard/beoordelingen",
+    icon: ClipboardIcon,
+    current: false,
+  },
 ];
 
 function classNames(...classes) {
@@ -89,11 +105,11 @@ export default function Sidebar() {
                   </Transition.Child>
                   <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                     <div className="flex-shrink-0 flex items-center px-4">
-                      <h1 className="text-white font-bold text-2xl">
+                      <Link to="/" className="text-white font-bold text-2xl">
                         Student
                         <span className="text-primary">IN</span>
                         Werk
-                      </h1>
+                      </Link>
                     </div>
                     <nav className="mt-5 px-2 space-y-1">
                       {navigation.map((item) => (
@@ -157,11 +173,11 @@ export default function Sidebar() {
           <div className="flex-1 flex flex-col min-h-0 bg-gray-800">
             <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
               <div className="flex items-center flex-shrink-0 px-4">
-                <h1 className="text-white font-bold text-2xl">
+                <Link to="/" className="text-white font-bold text-2xl">
                   Student
                   <span className="text-primary">IN</span>
                   Werk
-                </h1>
+                </Link>
               </div>
               <nav className="mt-5 flex-1 px-2 space-y-1">
                 {navigation.map((item) => (
