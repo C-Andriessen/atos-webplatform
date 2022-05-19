@@ -5,6 +5,7 @@ import DashboardReviews from "../pages/DashboardReviews";
 import DashboardSettings from "../pages/DashboardSettings";
 import Home from "../pages/Home";
 import Register from "../pages/Register";
+import Schools from "../pages/Schools";
 import Signin from "../pages/SignIn";
 
 function Routing() {
@@ -18,6 +19,7 @@ function Routing() {
         <Route path="/dashboard/beoordelingen" element={<DashboardReviews />} />
         <Route path="/login" element={<Signin />} />
         <Route path="/registreer" element={<Register />} />
+        <Route path="/scholen" element={<Schools />} />
       </Routes>
     </>
   );

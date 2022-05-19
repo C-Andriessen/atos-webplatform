@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 export default function Register() {
@@ -128,6 +129,7 @@ export default function Register() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
