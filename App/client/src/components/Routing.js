@@ -4,6 +4,8 @@ import DashboardMessage from "../pages/DashboardMessage";
 import DashboardReviews from "../pages/DashboardReviews";
 import DashboardSettings from "../pages/DashboardSettings";
 import Home from "../pages/Home";
+import Register from "../pages/Register";
+import Signin from "../pages/SignIn";
 
 function Routing() {
   return (
@@ -14,6 +16,8 @@ function Routing() {
         <Route path="/dashboard/berichten" element={<DashboardMessage />} />
         <Route path="/dashboard/instellingen" element={<DashboardSettings />} />
         <Route path="/dashboard/beoordelingen" element={<DashboardReviews />} />
+        <Route path="/login" element={<Signin />} />
+        <Route path="/registreer" element={<Register />} />
       </Routes>
     </>
   );

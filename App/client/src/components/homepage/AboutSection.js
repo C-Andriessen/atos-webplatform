@@ -1,77 +1,102 @@
-import { BsFillPeopleFill } from "react-icons/bs";
-import { FaPeopleCarry } from "react-icons/fa";
-import { IoMdSchool } from "react-icons/io";
+/* This example requires Tailwind CSS v2.0+ */
+import {
+  BriefcaseIcon,
+  IdentificationIcon,
+  AcademicCapIcon,
+} from "@heroicons/react/outline";
 
-function AboutSection() {
+const supportLinks = [
+  {
+    name: "Student",
+    href: "#",
+    description:
+      "Varius facilisi mauris sed sit. Non sed et duis dui leo, vulputate id malesuada non. Cras aliquet purus dui laoreet diam sed lacus, fames.",
+    icon: IdentificationIcon,
+  },
+  {
+    name: "Werkwijze",
+    href: "#",
+    description:
+      "Varius facilisi mauris sed sit. Non sed et duis dui leo, vulputate id malesuada non. Cras aliquet purus dui laoreet diam sed lacus, fames.",
+    icon: BriefcaseIcon,
+  },
+  {
+    name: "Scholen",
+    href: "#",
+    description:
+      "Varius facilisi mauris sed sit. Non sed et duis dui leo, vulputate id malesuada non. Cras aliquet purus dui laoreet diam sed lacus, fames.",
+    icon: AcademicCapIcon,
+  },
+];
+
+export default function AboutSection2() {
   return (
-    <>
-      <div className="text-white items-center flex flex-col text-center space-y-7 mt-40">
-        <h4 className="text-3xl">Over ons</h4>
-        <h2 className="text-5xl font-bold">
-          Student<span className="text-primary">IN</span>Werk
+    <div className="bg-darkmode mt-40 sm:mt-64">
+      {/* Header */}
+      <div className="relative pb-32 bg-gray-800">
+        <div className="absolute inset-0">
+          <img
+            className="w-full h-full object-cover"
+            src="https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=60&&sat=-100"
+            alt=""
+          />
+          <div
+            className="absolute inset-0 bg-darkmode mix-blend-multiply"
+            aria-hidden="true"
+          />
+        </div>
+        <div className="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
+          <h1 className="text-4xl font-extrabold tracking-tight text-white md:text-5xl lg:text-6xl">
+            Over Student<span className="text-primary">IN</span>Work
+          </h1>
+          <p className="mt-6 max-w-3xl text-xl text-gray-300">
+            Varius facilisi mauris sed sit. Non sed et duis dui leo, vulputate
+            id malesuada non. Cras aliquet purus dui laoreet diam sed lacus,
+            fames. Dui, amet, nec sit pulvinar.
+          </p>
+        </div>
+      </div>
+
+      {/* Overlapping cards */}
+      <section
+        className="-mt-32 max-w-7xl mx-auto relative z-10 pb-32 px-4 sm:px-6 lg:px-8"
+        aria-labelledby="contact-heading"
+      >
+        <h2 className="sr-only" id="contact-heading">
+          Lees meer
         </h2>
-        <p className="text-light text-2xl w-1/2">
-          Op onze website kan je kiezen uit verschillende studenten die graag
-          werkervaring willen opdoen met echt werk.
-        </p>
-      </div>
-      <div className="text-white flex text-center px-14 justify-between mt-14 mb-12">
-        <div className="flex flex-col items-center w-[30%]">
-          <div className="bg-[#393B41] w-fit p-3 rounded-full drop-shadow">
-            <BsFillPeopleFill className="w-14 h-14 text-primary" />
-          </div>
-          <h3 className="text-3xl font-bold mt-2">Over de student</h3>
-          <p className="text-xl mt-5">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lacinia
-            eleifend tellus sit amet congue. Sed auctor ante risus, eget
-            sollicitudin libero tristique id.
-          </p>
-          <a
-            href="http://localhost:3000"
-            className="text-primary text-xl font-bold mt-5"
-          >
-            Lees meer
-          </a>
+        <div className="grid grid-cols-1 gap-y-20 lg:grid-cols-3 lg:gap-y-0 lg:gap-x-8">
+          {supportLinks.map((link) => (
+            <div
+              key={link.name}
+              className="flex flex-col bg-white rounded-2xl shadow-xl"
+            >
+              <div className="flex-1 relative pt-16 px-6 pb-8 md:px-8">
+                <div className="absolute top-0 p-5 inline-block bg-indigo-600 rounded-xl shadow-lg transform -translate-y-1/2">
+                  <link.icon
+                    className="h-6 w-6 text-white"
+                    aria-hidden="true"
+                  />
+                </div>
+                <h3 className="text-xl font-medium text-gray-900">
+                  {link.name}
+                </h3>
+                <p className="mt-4 text-base text-gray-500">
+                  {link.description}
+                </p>
+              </div>
+              <div className="p-6 bg-gray-50 rounded-bl-2xl rounded-br-2xl md:px-8">
+                <a
+                  href={link.href}
+                  className="text-base font-medium text-indigo-700 hover:text-indigo-600"
+                >
+                  Lees meer<span aria-hidden="true"> &rarr;</span>
+                </a>
+              </div>
+            </div>
+          ))}
         </div>
-
-        <div className="flex flex-col items-center w-[30%]">
-          <div className="bg-[#393B41] w-fit p-3 rounded-full drop-shadow">
-            <FaPeopleCarry className="w-14 h-14 text-primary" />
-          </div>
-          <h3 className="text-3xl font-bold mt-2">Over onze werkwijze</h3>
-          <p className="text-xl mt-5">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lacinia
-            eleifend tellus sit amet congue. Sed auctor ante risus, eget
-            sollicitudin libero tristique id.
-          </p>
-          <a
-            href="http://localhost:3000"
-            className="text-primary text-xl font-bold mt-5"
-          >
-            Lees meer
-          </a>
-        </div>
-
-        <div className="flex flex-col items-center w-[30%]">
-          <div className="bg-[#393B41] w-fit p-3 rounded-full drop-shadow">
-            <IoMdSchool className="w-14 h-14 text-primary" />
-          </div>
-          <h3 className="text-3xl font-bold mt-2">Over de scholen</h3>
-          <p className="text-xl mt-5">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lacinia
-            eleifend tellus sit amet congue. Sed auctor ante risus, eget
-            sollicitudin libero tristique id.
-          </p>
-          <a
-            href="http://localhost:3000"
-            className="text-primary text-xl font-bold mt-5"
-          >
-            Lees meer
-          </a>
-        </div>
-      </div>
-    </>
+      </section>
+    </div>
   );
 }
-
-export default AboutSection;
