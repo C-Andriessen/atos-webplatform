@@ -8,9 +8,9 @@ import ResultSection from "../components/homepage/ResultSection";
 function Home() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Hero />
-      <Logos />
+      {/* <Logos /> */}
       <ExplanationSection />
       <AboutSection />
       <ResultSection />
