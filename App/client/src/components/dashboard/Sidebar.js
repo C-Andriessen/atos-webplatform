@@ -1,164 +1,244 @@
-import { BiExit } from "react-icons/bi";
+/* This example requires Tailwind CSS v2.0+ */
+import { Fragment, useState } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import {
+  AdjustmentsIcon,
+  HomeIcon,
+  InboxIcon,
+  MenuIcon,
+  ClipboardIcon,
+  XIcon,
+} from "@heroicons/react/outline";
 
-function Sidebar() {
-  return (
-    <div class="grid grid-cols-5 h-screen drop-shadow-xl sticky top-0">
-      <div class="col-start-1 col-end-2">
-        <div class="xl:rounded-r  xl:translate-x-0  flex justify-start items-start h-full sm:w-64 bg-zinc-800 flex-col p-5">
-          <div class=" flex justify-between items-center">
-            <div class="flex justify-center items-center  space-x-2">
-              <div>
-                <img
-                  class="rounded-full"
-                  src="https://i.ibb.co/L1LQtBm/Ellipse-1.png"
-                  alt="avatar"
-                />
-              </div>
-              <div class="flex justify-start flex-col items-start">
-                <p class=" text-sm leading-5 text-white">Alexis Enache</p>
-                <p class="text-xs leading-3 text-gray-300">Software engineer</p>
-              </div>
-            </div>
-          </div>
-          <div class="mt-6 flex flex-col justify-end items-center space-y-3 pb-5 ">
-            <button class="flex jusitfy-end items-center space-x-6 w-full  focus:outline-none  focus:text-primary  text-white rounded ">
-              <img
-                class="fill-stroke "
-                src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sidebar2-svg4.svg"
-                alt="dashboard"
-              />
-              <p class="text-base leading-4 ">Dashboard</p>
-            </button>
-            <button class="flex jusitfy-start items-center space-x-6 w-full  focus:outline-none  focus:text-primary  text-white rounded ">
-              <svg
-                class="fill-stroke"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M15 10L11 14L17 20L21 4L3 11L7 13L9 19L12 15"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-              <p class="text-base leading-4  ">Berichten</p>
-            </button>
+const navigation = [
+  { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
+  { name: "Berichten", href: "#", icon: InboxIcon, current: false },
+  { name: "Instellingen", href: "#", icon: AdjustmentsIcon, current: false },
+  { name: "Beoordelingen", href: "#", icon: ClipboardIcon, current: false },
+];
 
-            <button class="flex jusitfy-start items-center space-x-6 w-full  focus:outline-none  focus:text-primary  text-white rounded ">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M14 8.00002C15.1046 8.00002 16 7.10459 16 6.00002C16 4.89545 15.1046 4.00002 14 4.00002C12.8954 4.00002 12 4.89545 12 6.00002C12 7.10459 12.8954 8.00002 14 8.00002Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M4 6H12"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M16 6H20"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M8 14C9.10457 14 10 13.1046 10 12C10 10.8954 9.10457 10 8 10C6.89543 10 6 10.8954 6 12C6 13.1046 6.89543 14 8 14Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M4 12H6"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M10 12H20"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M17 20C18.1046 20 19 19.1046 19 18C19 16.8955 18.1046 16 17 16C15.8954 16 15 16.8955 15 18C15 19.1046 15.8954 20 17 20Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M4 18H15"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M19 18H20"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-              <p class="text-base leading-4  ">Instellingen</p>
-            </button>
-            <button class="flex jusitfy-start items-center space-x-6 w-full  focus:outline-none  focus:text-primary  text-white rounded ">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10 6H7C6.46957 6 5.96086 6.21071 5.58579 6.58579C5.21071 6.96086 5 7.46957 5 8V17C5 17.5304 5.21071 18.0391 5.58579 18.4142C5.96086 18.7893 6.46957 19 7 19H16C16.5304 19 17.0391 18.7893 17.4142 18.4142C17.7893 18.0391 18 17.5304 18 17V14"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M17 10C18.6569 10 20 8.65685 20 7C20 5.34314 18.6569 4 17 4C15.3431 4 14 5.34314 14 7C14 8.65685 15.3431 10 17 10Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-              <p class="text-base leading-4  ">Beoordelingen</p>
-            </button>
-            <a
-              href="http://localhost:3000/"
-              className="absolute bottom-10 text-primary font-bold flex items-center"
-            >
-              <BiExit className="mr-3" /> Ga terug
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
 }
 
-export default Sidebar;
+export default function Sidebar() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  return (
+    <>
+      {/*
+        This example requires updating your template:
+
+        ```
+        <html class="h-full bg-gray-100">
+        <body class="h-full">
+        ```
+      */}
+      <div>
+        <Transition.Root show={sidebarOpen} as={Fragment}>
+          <Dialog
+            as="div"
+            className="relative z-40 md:hidden"
+            onClose={setSidebarOpen}
+          >
+            <Transition.Child
+              as={Fragment}
+              enter="transition-opacity ease-linear duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="transition-opacity ease-linear duration-300"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
+            </Transition.Child>
+
+            <div className="fixed inset-0 flex z-40">
+              <Transition.Child
+                as={Fragment}
+                enter="transition ease-in-out duration-300 transform"
+                enterFrom="-translate-x-full"
+                enterTo="translate-x-0"
+                leave="transition ease-in-out duration-300 transform"
+                leaveFrom="translate-x-0"
+                leaveTo="-translate-x-full"
+              >
+                <Dialog.Panel className="relative flex-1 flex flex-col max-w-xs w-full bg-gray-800">
+                  <Transition.Child
+                    as={Fragment}
+                    enter="ease-in-out duration-300"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="ease-in-out duration-300"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                  >
+                    <div className="absolute top-0 right-0 -mr-12 pt-2">
+                      <button
+                        type="button"
+                        className="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                        onClick={() => setSidebarOpen(false)}
+                      >
+                        <span className="sr-only">Close sidebar</span>
+                        <XIcon
+                          className="h-6 w-6 text-white"
+                          aria-hidden="true"
+                        />
+                      </button>
+                    </div>
+                  </Transition.Child>
+                  <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
+                    <div className="flex-shrink-0 flex items-center px-4">
+                      <h1 className="text-white font-bold text-2xl">
+                        Student
+                        <span className="text-primary">IN</span>
+                        Werk
+                      </h1>
+                    </div>
+                    <nav className="mt-5 px-2 space-y-1">
+                      {navigation.map((item) => (
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          className={classNames(
+                            item.current
+                              ? "bg-gray-900 text-white"
+                              : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                            "group flex items-center px-2 py-2 text-base font-medium rounded-md"
+                          )}
+                        >
+                          <item.icon
+                            className={classNames(
+                              item.current
+                                ? "text-gray-300"
+                                : "text-gray-400 group-hover:text-gray-300",
+                              "mr-4 flex-shrink-0 h-6 w-6"
+                            )}
+                            aria-hidden="true"
+                          />
+                          {item.name}
+                        </a>
+                      ))}
+                    </nav>
+                  </div>
+                  <div className="flex-shrink-0 flex bg-gray-700 p-4">
+                    <a href="#" className="flex-shrink-0 group block">
+                      <div className="flex items-center">
+                        <div>
+                          <img
+                            className="inline-block h-10 w-10 rounded-full"
+                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                            alt=""
+                          />
+                        </div>
+                        <div className="ml-3">
+                          <p className="text-base font-medium text-white">
+                            Collin Andriessen
+                          </p>
+                          <p className="text-sm font-medium text-gray-400 group-hover:text-gray-300">
+                            View profile
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+              <div className="flex-shrink-0 w-14">
+                {/* Force sidebar to shrink to fit close icon */}
+              </div>
+            </div>
+          </Dialog>
+        </Transition.Root>
+
+        {/* Static sidebar for desktop */}
+        <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
+          {/* Sidebar component, swap this element with another sidebar if you like */}
+          <div className="flex-1 flex flex-col min-h-0 bg-gray-800">
+            <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
+              <div className="flex items-center flex-shrink-0 px-4">
+                <h1 className="text-white font-bold text-2xl">
+                  Student
+                  <span className="text-primary">IN</span>
+                  Werk
+                </h1>
+              </div>
+              <nav className="mt-5 flex-1 px-2 space-y-1">
+                {navigation.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className={classNames(
+                      item.current
+                        ? "bg-gray-900 text-white"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                      "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                    )}
+                  >
+                    <item.icon
+                      className={classNames(
+                        item.current
+                          ? "text-gray-300"
+                          : "text-gray-400 group-hover:text-gray-300",
+                        "mr-3 flex-shrink-0 h-6 w-6"
+                      )}
+                      aria-hidden="true"
+                    />
+                    {item.name}
+                  </a>
+                ))}
+              </nav>
+            </div>
+            <div className="flex-shrink-0 flex bg-gray-700 p-4">
+              <a href="#" className="flex-shrink-0 w-full group block">
+                <div className="flex items-center">
+                  <div>
+                    <img
+                      className="inline-block h-9 w-9 rounded-full"
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      alt=""
+                    />
+                  </div>
+                  <div className="ml-3">
+                    <p className="text-sm font-medium text-white">
+                      Collin Andriessen
+                    </p>
+                    <p className="text-xs font-medium text-gray-300 group-hover:text-gray-200">
+                      Bekijk profiel
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="md:pl-64 flex flex-col flex-1">
+          <div className="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3">
+            <button
+              type="button"
+              className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-white hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              onClick={() => setSidebarOpen(true)}
+            >
+              <span className="sr-only">Open sidebar</span>
+              <MenuIcon className="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
+          <main className="flex-1">
+            <div className="py-6">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 className="text-2xl font-semibold text-white">Dashboard</h1>
+              </div>
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                {/* Replace with your content */}
+                <div className="py-4">
+                  <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" />
+                </div>
+                {/* /End replace */}
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </>
+  );
+}
