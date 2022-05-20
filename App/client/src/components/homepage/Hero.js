@@ -1,3 +1,5 @@
+import LogoCloud from "../LogoCloud";
+
 export default function Hero() {
   return (
     <div className="bg-darkmode">
@@ -14,7 +16,7 @@ export default function Hero() {
                     src="./images/main.jpg"
                     alt="People working on laptops"
                   />
-                  <div className="absolute inset-0 bg-darkmode mix-blend-multiply" />
+                  <div className="absolute inset-0 bg-gray-500 mix-blend-multiply" />
                 </div>
                 <div className="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
                   <h1 className="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
@@ -38,7 +40,7 @@ export default function Hero() {
                         href="#"
                         className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary bg-opacity-60 hover:bg-opacity-70 sm:px-8"
                       >
-                        Word lid
+                        Plaats een opdracht
                       </a>
                     </div>
                   </div>
@@ -48,50 +50,7 @@ export default function Hero() {
           </div>
 
           {/* Logo cloud */}
-          <div className="bg-darkmode">
-            <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-              <p className="text-center text-sm font-semibold uppercase text-light tracking-wide">
-                Aangesloten scholen
-              </p>
-              <div className="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
-                <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                  <img
-                    className="h-12"
-                    src="./images/noorderpoort.svg"
-                    alt="Noorderpoort"
-                  />
-                </div>
-                <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                  <img
-                    className="h-12"
-                    src="./images/hanzehogeschool.svg"
-                    alt="StaticKit"
-                  />
-                </div>
-                <div className="col-span-1 flex justify-center md:col-span-2 md:col-start-2 lg:col-span-1">
-                  <img
-                    className="h-12"
-                    src="./images/alfa-college.svg"
-                    alt="Transistor"
-                  />
-                </div>
-                <div className="col-span-1 flex justify-center md:col-span-2 md:col-start-2 lg:col-span-1">
-                  <img
-                    className="h-12"
-                    src="./images/rug.png"
-                    alt="Transistor"
-                  />
-                </div>
-                <div className="col-span-1 flex justify-center md:col-span-2 md:col-start-2 lg:col-span-1">
-                  <img
-                    className="h-12"
-                    src="./images/terra-mbo.webp"
-                    alt="Transistor"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+          <LogoCloud />
         </div>
 
         {/* More main page content here... */}

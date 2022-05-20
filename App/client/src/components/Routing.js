@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import Contact from "../pages/Contact";
 import DashboardHome from "../pages/DashboardHome";
 import DashboardMessage from "../pages/DashboardMessage";
 import DashboardReviews from "../pages/DashboardReviews";
@@ -20,6 +21,7 @@ function Routing() {
         <Route path="/login" element={<Signin />} />
         <Route path="/registreer" element={<Register />} />
         <Route path="/scholen" element={<Schools />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </>
   );

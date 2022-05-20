@@ -8,6 +8,7 @@ const navigation = [
   { name: "Studenten", href: "#" },
   { name: "Scholen", href: "/scholen" },
   { name: "Over ons", href: "#" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function Header() {

@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import AboutSection from "../components/homepage/AboutSection";
 import ExplanationSection from "../components/homepage/ExplanationSection";
 import Hero from "../components/homepage/Hero";
-import ResultSection from "../components/homepage/ResultSection";
+import SchoolsJoin from "../components/SchoolsJoin";
 import WhySection from "../components/WhySection";
 
 function Home() {
@@ -14,7 +14,6 @@ function Home() {
       <Hero />
       <ExplanationSection />
       <AboutSection />
-      {/* <ResultSection /> */}
       <WhySection />
       <Footer />
     </>

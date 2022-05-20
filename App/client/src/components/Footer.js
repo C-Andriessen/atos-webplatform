@@ -5,7 +5,8 @@ const navigation = {
     { name: "Studenten", href: "#" },
     { name: "Scholen", href: "#" },
     { name: "Over ons", href: "#" },
-    { name: "Contact", href: "#" },
+    { name: "Contact & Veelgestelde vragen", href: "/contact" },
+    { name: "School aanmelden", href: "#" },
   ],
   social: [
     {
@@ -48,7 +49,7 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-800 mt-32">
+    <footer className="bg-[#121212]">
       <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
         <nav
           className="-mx-5 -my-2 flex flex-wrap justify-center"

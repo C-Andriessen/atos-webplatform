@@ -82,6 +82,7 @@ export default function Schools() {
           </div>
         </div>
       </div>
+      <SchoolsJoin />
       <Footer />
     </>
   );
