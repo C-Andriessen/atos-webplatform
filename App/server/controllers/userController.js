@@ -1,63 +1,114 @@
-const User = require('../models/userModel');
-const Role = require('../models/roleModel');
-const validation = require('../middleware/validation')
-const bcrypt = require('bcryptjs');
+const User = require("../models/userModel");
+const emailController = require("../controllers/emailController");
+const validation = require("../middleware/validation");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+async function getUser(req, res) {
+  const user = req.user;
+  try {
+    res.json({ name: user.name, email: user.email, gender: user.sex });
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 async function register(req, res) {
-    try{
-    const {name, email, password, passwordRepeat } = req.body;
+  try {
+    const { name, email, password, passwordRepeat, sex } = req.body;
 
-      const filledIn = await validation.isFilledIn({'naam': name, email, 'wachtwoord': password, 'wachtwoord bevestigen': passwordRepeat});
+    const filledIn = await validation.isFilledIn({
+      email,
+      naam: name,
+      wachtwoord: password,
+      "wachtwoord bevestigen": passwordRepeat,
+      geslacht: sex,
+    });
 
-      if (filledIn) {
-        return res.status(400).json({
-          errorMessage: filledIn,
-        });
-      }
+    if (filledIn) {
+      return res.send({ errorMessage: filledIn });
+    }
 
-      const passwordEqual = await validation.passwordEqual(password, passwordRepeat);
+    const passwordEqual = await validation.passwordEqual(
+      password,
+      passwordRepeat
+    );
 
-      if (passwordEqual) {
-        return res.status(400).json({
-          errorMessage: passwordEqual,
-        });
-      }
+    if (passwordEqual) {
+      return res.send({ errorMessage: passwordEqual });
+    }
 
-      const passwordLength = await validation.passwordLength(password, 6);
-      
-      if(passwordLength) {
-        return res.status(400).json({
-          errorMessage: passwordLength,
-        });
-      }
+    const passwordLength = await validation.passwordLength(password, 6);
 
-const passwordHash = await bcrypt.hash(password, await bcrypt.genSalt());
+    if (passwordLength) {
+      return res.send({ errorMessage: passwordLength });
+    }
 
-const role = await Role.findOne({name: "VISITOR"}).exec();
+    const passwordHash = await bcrypt.hash(password, await bcrypt.genSalt());
 
-await User.create({
-    name,
-    email,
-    passwordHash,
-    role: role._id,
-    // active: false,
-});
+    const user = await User.create({
+      name,
+      email,
+      passwordHash,
+      sex,
+      active: false,
+    });
 
+    emailController.createAndSendMail(user, email);
 
-res.redirect('/');
-
-    } catch(err) {
-        console.log(err);
-      if(err.code = 11000) {
-        return res.status(400).json({
-          errorMessage: "De email die u heeft opgegeven is al in gebruik",
-        });
-      } else {
-        console.log(err.code);
-      }
+    res.end();
+  } catch (err) {
+    console.log(err);
+    if ((err.code = 11000)) {
+      return res.status(400).json({
+        errorMessage: "De email die u heeft opgegeven is al in gebruik",
+      });
+    } else {
+      console.log(err.code);
+    }
+  }
 }
+
+async function login(req, res) {
+  const { email, password, remember } = req.body;
+
+  console.log(remember);
+
+  const filledIn = await validation.isFilledIn({ email, wachtwoord: password });
+
+  if (filledIn) return res.send({ errorMessage: filledIn });
+
+  const user = await User.findOne({ email });
+
+  if (!user)
+    return res.send({ errorMessage: "Gebruikersnaam of wachtwoord incorrect" });
+
+  const passwordCorrect = bcrypt.compareSync(password, user.passwordHash);
+
+  if (!passwordCorrect)
+    return res.send({ errorMessage: "Gebruikersnaam of wachtwoord incorrect" });
+
+  if (!user.active)
+    return res.send({
+      errorMessage: "De email van dit account is nog niet geactiveerd",
+    });
+
+  const token = jwt.sign(
+    {
+      id: user._id,
+    },
+    process.env.JWT_SECRET
+  );
+
+  res
+    .cookie("auth-token", token, {
+      httpOnly: true,
+    })
+    .end();
 }
 
 module.exports = {
-    register,
-}
+  register,
+  login,
+  getUser,
+};
