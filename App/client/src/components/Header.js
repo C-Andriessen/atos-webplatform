@@ -4,8 +4,8 @@ import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 
 const navigation = [
-  { name: "Opdrachten", href: "#" },
-  { name: "Studenten", href: "#" },
+  { name: "Opdrachten", href: "/opdrachten" },
+  { name: "Studenten", href: "/studenten" },
   { name: "Scholen", href: "/scholen" },
   { name: "Over ons", href: "#" },
   { name: "Contact", href: "/contact" },

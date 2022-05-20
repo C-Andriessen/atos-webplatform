@@ -5,9 +5,12 @@ import DashboardMessage from "../pages/DashboardMessage";
 import DashboardReviews from "../pages/DashboardReviews";
 import DashboardSettings from "../pages/DashboardSettings";
 import Home from "../pages/Home";
+import Projects from "../pages/Projects";
 import Register from "../pages/Register";
 import Schools from "../pages/Schools";
 import Signin from "../pages/SignIn";
+import Student from "../pages/Student";
+import Students from "../pages/Students";
 
 function Routing() {
   return (
@@ -22,6 +25,9 @@ function Routing() {
         <Route path="/registreer" element={<Register />} />
         <Route path="/scholen" element={<Schools />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/opdrachten" element={<Projects />} />
+        <Route path="/studenten" element={<Students />} />
+        <Route path="/studenten/student" element={<Student />} />
       </Routes>
     </>
   );
