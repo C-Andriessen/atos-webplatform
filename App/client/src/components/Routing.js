@@ -1,16 +1,18 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Contact from "../pages/Contact";
 import DashboardHome from "../pages/DashboardHome";
 import DashboardMessage from "../pages/DashboardMessage";
 import DashboardReviews from "../pages/DashboardReviews";
 import DashboardSettings from "../pages/DashboardSettings";
 import Home from "../pages/Home";
+import NotFound from "../pages/NotFound";
 import Projects from "../pages/Projects";
 import Register from "../pages/Register";
 import Schools from "../pages/Schools";
 import Signin from "../pages/SignIn";
 import Student from "../pages/Student";
 import Students from "../pages/Students";
+import ConfirmEmail from "./ConfirmEmail";
 
 function Routing() {
   return (
@@ -28,6 +30,8 @@ function Routing() {
         <Route path="/opdrachten" element={<Projects />} />
         <Route path="/studenten" element={<Students />} />
         <Route path="/studenten/student" element={<Student />} />
+        <Route path="/confirm" element={<ConfirmEmail />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
