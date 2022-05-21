@@ -17,7 +17,7 @@ const navigation = [
 ];
 
 export default function Header() {
-  const user = useContext(userContext);
+  const { user } = useContext(userContext);
   return (
     <header>
       <Popover className="relative bg-darkmode">
@@ -66,7 +66,7 @@ export default function Header() {
               </a>
             ))}
           </Popover.Group>
-          {user ? <AvatarHeader /> : <SignButtonsHeader />}
+          {user.name ? <AvatarHeader /> : <SignButtonsHeader />}
         </div>
 
         <Transition
@@ -110,7 +110,7 @@ export default function Header() {
                     </a>
                   ))}
                 </div>
-                {user ? <DashboardButtonHeader /> : <SignButtonsMobile />}
+                {user.name ? <DashboardButtonHeader /> : <SignButtonsMobile />}
               </div>
             </div>
           </Popover.Panel>

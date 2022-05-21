@@ -1,11 +1,17 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ConfirmRegister from "../components/ConfirmRegister";
 import ErrorMessage from "../components/ErrorMessage";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { hostContext } from "../context/hostContext";
+import { userContext } from "../context/userContext";
 
 export default function Register() {
+  const { user } = useContext(userContext);
+
+  const host = useContext(hostContext);
+
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +26,7 @@ export default function Register() {
   function handleRegister(ev) {
     ev.preventDefault();
     axios
-      .post("http://localhost:5000/api/user/register", {
+      .post(`${host}/api/user/register`, {
         email,
         name,
         password,
@@ -42,6 +48,11 @@ export default function Register() {
         }
       });
   }
+
+  if (user.name) {
+    window.location.href = "/dashboard";
+  }
+
   return (
     <>
       {success ? <ConfirmRegister /> : ""}
