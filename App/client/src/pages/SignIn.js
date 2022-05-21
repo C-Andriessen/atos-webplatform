@@ -1,8 +1,10 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ErrorMessage from "../components/ErrorMessage";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { hostContext } from "../context/hostContext";
+import { userContext } from "../context/userContext";
 
 /*
   This example requires Tailwind CSS v2.0+ 
@@ -21,6 +23,8 @@ import Header from "../components/Header";
   ```
 */
 export default function Signin() {
+  const user = useContext(userContext);
+  const host = useContext(hostContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
@@ -31,7 +35,7 @@ export default function Signin() {
     ev.preventDefault();
     axios
       .post(
-        "http://localhost:5000/api/user/login",
+        `${host}/api/user/login`,
         { email, password, remember },
         { withCredentials: true }
       )
@@ -43,6 +47,10 @@ export default function Signin() {
         }
       });
   };
+
+  if (user.name) {
+    window.location.href = "/dashboard";
+  }
 
   return (
     <>

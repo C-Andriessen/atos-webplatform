@@ -7,7 +7,12 @@ const jwt = require("jsonwebtoken");
 async function getUser(req, res) {
   const user = req.user;
   try {
-    res.json({ name: user.name, email: user.email, gender: user.sex });
+    res.json({
+      name: user.name,
+      email: user.email,
+      gender: user.sex,
+      profileImg: user.profileImg,
+    });
   } catch (err) {
     console.log(err);
   }
@@ -52,6 +57,7 @@ async function register(req, res) {
       passwordHash,
       sex,
       active: false,
+      profileImg: "",
     });
 
     emailController.createAndSendMail(user, email);
@@ -107,8 +113,13 @@ async function login(req, res) {
     .end();
 }
 
+function logout(req, res) {
+  res.clearCookie("auth-token").end();
+}
+
 module.exports = {
   register,
   login,
   getUser,
+  logout,
 };
