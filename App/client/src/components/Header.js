@@ -17,7 +17,7 @@ const navigation = [
 ];
 
 export default function Header() {
-  const user = useContext(userContext);
+  const { user } = useContext(userContext);
   return (
     <header>
       <Popover className="relative bg-darkmode">

@@ -9,7 +9,7 @@ function classNames(...classes) {
 }
 
 export default function AvatarHeader() {
-  const user = useContext(userContext);
+  const { user, imgurl } = useContext(userContext);
 
   if (user.profileImg === "") {
     var username = user.name;
@@ -82,8 +82,8 @@ export default function AvatarHeader() {
           className="relative inline-block text-left z-20 h-12 w-12"
         >
           <div>
-            <Menu.Button className="inline-flex h-12 w-12 rounded-full z-10 ">
-              <img src={user.profileImg} alt="" className="rounded-full" />
+            <Menu.Button className="inline-flex rounded-full z-10 ">
+              <img src={imgurl} alt="" className="rounded-full h-12 w-12" />
             </Menu.Button>
           </div>
 

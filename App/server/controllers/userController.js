@@ -3,6 +3,8 @@ const emailController = require("../controllers/emailController");
 const validation = require("../middleware/validation");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const fs = require("fs");
+const path = require("path");
 
 async function getUser(req, res) {
   const user = req.user;
@@ -57,7 +59,6 @@ async function register(req, res) {
       passwordHash,
       sex,
       active: false,
-      profileImg: "",
     });
 
     emailController.createAndSendMail(user, email);
@@ -117,9 +118,55 @@ function logout(req, res) {
   res.clearCookie("auth-token").end();
 }
 
+async function edit(req, res) {
+  try {
+    const user = req.user;
+    const { name, work, phone, description } = req.body;
+    if (req.file) {
+      if (user.profileImg !== "") {
+        fs.unlinkSync(
+          path.join(__dirname`../tmp/uploads/images/${user.profileImg}`)
+        );
+      }
+      await User.findByIdAndUpdate(user.id, {
+        name,
+        work,
+        phone,
+        description,
+        profileImg: req.file.filename,
+      });
+    } else {
+      await User.findByIdAndUpdate(user.id, {
+        name,
+        work,
+        phone,
+        description,
+      });
+    }
+    res.end();
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+async function profileImg(req, res) {
+  try {
+    if (req.params.filename != "undefined") {
+      res.setHeader("Content-Type", "image");
+      res.sendFile(
+        path.join(__dirname, `../tmp/uploads/images/${req.params.filename}`)
+      );
+    }
+  } catch (e) {
+    res.end();
+  }
+}
+
 module.exports = {
   register,
   login,
   getUser,
   logout,
+  edit,
+  profileImg,
 };

@@ -8,7 +8,7 @@ import { hostContext } from "../context/hostContext";
 import { userContext } from "../context/userContext";
 
 export default function Register() {
-  const user = useContext(userContext);
+  const { user } = useContext(userContext);
 
   const host = useContext(hostContext);
 

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { userContext } from "../../context/userContext";
 
 export default function DashboardAvatarSettings(props) {
-  const user = useContext(userContext);
+  const { user } = useContext(userContext);
 
   if (props.img === "") {
     var username = user.name;

@@ -1,17 +1,44 @@
+import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import { hostContext } from "../../context/hostContext";
 import { userContext } from "../../context/userContext";
 import DashboardAvatarSettings from "./DashboardAvatarSettings";
 import DashboardAvatarSettingsMobile from "./DashboardAvatarSettingsMobile";
 
 export default function DashboardSettings() {
-  const user = useContext(userContext);
-  const [imgSrc, setImgSrc] = useState(user.profileImg);
+  const { user, imgurl } = useContext(userContext);
+  const host = useContext(hostContext);
+  const [imgSrc, setImgSrc] = useState("");
+  const [name, setName] = useState(user.name);
+  const [workTitle, setWorkTitle] = useState(user.work);
+  const [phoneNumber, setPhoneNumber] = useState(user.phone);
+  const [description, setDescription] = useState(user.description);
+  const [image, setImage] = useState(null);
 
-  console.log(imgSrc);
+  function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("file", image);
+    formData.append("name", name);
+    formData.append("work", workTitle);
+    formData.append("phone", phoneNumber);
+    formData.append("description", description);
 
-  //   const [name, setName] = useState(user.name);
+    axios
+      .post(`${host}/api/user/update`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: true,
+      })
+      .then((res) => {
+        // console.log(res);
+      });
+  }
 
-  useEffect(() => {}, [imgSrc]);
+  useEffect(() => {
+    if (!user.profileImg === "") {
+      setImgSrc(imgurl);
+    }
+  }, [imgSrc]);
   return (
     <div>
       <div className="max-w-screen-xl pb-6 lg:pb-16">
@@ -19,8 +46,8 @@ export default function DashboardSettings() {
           <div className="divide-y divide-gray-200 lg:grid lg:grid-cols-20 lg:divide-y-0 lg:divide-x">
             <form
               className="divide-y divide-gray-200 lg:col-span-9"
-              action="#"
-              method="POST"
+              onSubmit={handleSubmit}
+              encType="multipart/form-data"
             >
               {/* Profile section */}
               <div className="py-6 px-4 sm:p-6 lg:pb-8">
@@ -46,7 +73,10 @@ export default function DashboardSettings() {
                           name="about"
                           rows={5}
                           className="shadow-sm focus:ring-primary focus:border-primary mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                          defaultValue={""}
+                          value={description}
+                          onChange={(e) => {
+                            setDescription(e.target.value);
+                          }}
                         />
                       </div>
                       <p className="mt-2 text-sm text-light">
@@ -89,6 +119,7 @@ export default function DashboardSettings() {
                                 if (file) {
                                   setImgSrc(URL.createObjectURL(file));
                                 }
+                                setImage(file);
                               }}
                             />
                           </div>
@@ -114,6 +145,7 @@ export default function DashboardSettings() {
                             if (file) {
                               setImgSrc(URL.createObjectURL(file));
                             }
+                            setImage(file);
                           }}
                         />
                       </label>
@@ -125,63 +157,73 @@ export default function DashboardSettings() {
                   <div className="col-span-12 sm:col-span-6">
                     <label
                       htmlFor="first-name"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-light"
                     >
-                      First name
+                      Volledige naam
                     </label>
                     <input
                       type="text"
                       name="first-name"
                       id="first-name"
+                      value={name}
                       autoComplete="given-name"
                       className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                      onChange={(e) => {
+                        setName(e.target.value);
+                      }}
                     />
                   </div>
 
                   <div className="col-span-12 sm:col-span-6">
                     <label
-                      htmlFor="last-name"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Last name
-                    </label>
-                    <input
-                      type="text"
-                      name="last-name"
-                      id="last-name"
-                      autoComplete="family-name"
-                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
-                    />
-                  </div>
-
-                  <div className="col-span-12">
-                    <label
                       htmlFor="url"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-light"
                     >
-                      URL
+                      Werk titel
                     </label>
                     <input
                       type="text"
                       name="url"
                       id="url"
+                      value={workTitle}
                       className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                      onChange={(e) => {
+                        setWorkTitle(e.target.value);
+                      }}
                     />
                   </div>
 
                   <div className="col-span-12 sm:col-span-6">
                     <label
                       htmlFor="company"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-light"
                     >
-                      Company
+                      Telefoon nummer
                     </label>
                     <input
                       type="text"
                       name="company"
                       id="company"
                       autoComplete="organization"
+                      value={phoneNumber}
                       className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                      onChange={(e) => {
+                        setPhoneNumber(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div className="col-span-12 sm:col-span-6 bg">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-light"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="text"
+                      value={user.email}
+                      className="mt-1 block w-full text-primary font-bold border border-gray-300 rounded-md shadow-md sm:text-sm"
+                      onChange={() => {}}
                     />
                   </div>
                 </div>

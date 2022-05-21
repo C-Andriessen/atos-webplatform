@@ -23,7 +23,7 @@ import { userContext } from "../context/userContext";
   ```
 */
 export default function Signin() {
-  const user = useContext(userContext);
+  const { user } = useContext(userContext);
   const host = useContext(hostContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

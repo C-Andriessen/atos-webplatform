@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { userContext } from "../../context/userContext";
 
 export default function DashoardAvatar() {
-  const user = useContext(userContext);
+  const { user, imgurl } = useContext(userContext);
 
   if (user.profileImg === "") {
     var username = user.name;
@@ -23,7 +23,7 @@ export default function DashoardAvatar() {
     return (
       <img
         className="inline-block h-10 w-10 rounded-full"
-        src={user.profileImg}
+        src={imgurl}
         alt=""
       />
     );

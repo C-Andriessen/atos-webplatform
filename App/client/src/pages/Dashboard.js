@@ -37,7 +37,7 @@ function classNames(...classes) {
 }
 
 export default function Dashboard() {
-  const user = useContext(userContext);
+  const { user } = useContext(userContext);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [dashboard, setDashboard] = useState(<DashboardHome />);
