@@ -1,17 +1,20 @@
 const mongoose = require("mongoose");
-const objectId = mongoose.Schema.Types.ObjectId;
 
-const userSchema = new mongoose.Schema({
-    email:{type: String, required: true, unique: true},
-    name: {type: String, required: true},
-    passwordHash: {type: String, required: true},
-    posts: [{type: objectId, ref: "post"}],
-    reviews: [{type: objectId, ref: "review"}],
-    comments: [{type: objectId, ref: "comment"}],
-    image: {type: String},
-},{
+const userSchema = new mongoose.Schema(
+  {
+    email: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
+    passwordHash: { type: String, required: true },
+    sex: { type: String, required: true },
+    profileImg: { type: String, default: "" },
+    description: { type: String, default: "" },
+    work: { type: String, default: "" },
+    phone: { type: String, default: "" },
+    active: { type: String, required: true, default: false },
+  },
+  {
     timestamps: true,
-    }
+  }
 );
 
 const User = mongoose.model("user", userSchema);

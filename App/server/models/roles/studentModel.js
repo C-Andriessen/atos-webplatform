@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const objectId = mongoose.Schema.Types.ObjectId;
 
 const studentSchema = new mongoose.Schema({
+    user: {type: objectId, ref: "user"},
     school: {type: objectId, ref: "school"},
     education: {type: objectId, ref: "education"},
-    user: {type: objectId, ref: "user"},
-    studentNumber: {type: String, required: true},
+    studentId: {type: String, required: true},
 },{
     timestamps: true,
 });
