@@ -55,9 +55,46 @@ res.redirect('/');
       } else {
         console.log(err.code);
       }
+  }
 }
+
+async function login(req, res){
+  const{name, password} = req.body;
+
+    if(!name || !password){
+        return res.status(400).json({
+          errorMessage: "Vul alle velden in",
+        });
+    }
+
+    const userInDB = await User.findOne({name});
+
+    if(!userInDB){
+      return res.status(400).json({
+        errorMessage: "Gebruiker niet bekend",
+      });
+    }
+
+    const passwordCorrect = bcrypt.compareSync(password, userInDB.passwordHash);
+
+    if(!passwordCorrect){
+        return res.status(400).json({
+            errorMessage: "Verkeerde wachtwoord",
+        });
+    }
+
+    const token = jwt.sign({
+      id: userInDB._id
+    },
+      process.env.JWT_SECRET
+    );
+
+    res.cookie("auth-token", token,{
+      httpOnly: true,
+    }).redirect("/");
 }
 
 module.exports = {
     register,
+    login,
 }

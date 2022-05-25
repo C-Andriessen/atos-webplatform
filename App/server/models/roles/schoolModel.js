@@ -2,13 +2,14 @@ const mongoose = require("mongoose");
 const objectId = mongoose.Schema.Types.ObjectId;
 
 const schoolSchema = new mongoose.Schema({
-    schoolName: {type: String, required: true},
-    students: [{type: objectId, ref: "user"}],
+    adres: {type: String},
+    students: [{type: objectId, ref: "student"}],
+    teachers: [{type: objectId, ref: "teacher"}],
     educations: [{type: objectId, ref: "education"}],
-    schoolAdres: {type: String, required: true}
+    user: {type: objectId, ref: "user"}
 },{
     timestamps: true,
-})
+});
 
 const School = mongoose.model("school", schoolSchema);
 
