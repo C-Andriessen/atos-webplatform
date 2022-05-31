@@ -23,10 +23,4 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use("/api/user", require("./routers/userRouter"));
-<<<<<<< HEAD
-
-//test frontend to backend connection
-app.use("/test", require("./routers/testRouter"));
-=======
 app.use("/api/email", require("./routers/emailRouter"));
->>>>>>> e1943f2dd39358ba6349f55292f2799efbb2d0c4
