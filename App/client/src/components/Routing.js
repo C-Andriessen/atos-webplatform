@@ -19,7 +19,19 @@ function Routing() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard page={"Dashboard"} />} />
+        <Route
+          path="/dashboard/instellingen"
+          element={<Dashboard page={"Instellingen"} />}
+        />
+        <Route
+          path="/dashboard/berichten"
+          element={<Dashboard page={"Berichten"} />}
+        />
+        <Route
+          path="/dashboard/beoordelingen"
+          element={<Dashboard page={"Beoordelingen"} />}
+        />
         <Route path="/login" element={<Signin />} />
         <Route path="/registreer" element={<Register />} />
         <Route path="/scholen" element={<Schools />} />

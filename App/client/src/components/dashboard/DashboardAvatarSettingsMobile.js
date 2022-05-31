@@ -4,7 +4,7 @@ import { userContext } from "../../context/userContext";
 export default function DashboardAvatarSettingsMobile(props) {
   const { user } = useContext(userContext);
 
-  if (props.img === "") {
+  if (props.img === "undefined") {
     var username = user.name;
     username = username.split(" ");
 

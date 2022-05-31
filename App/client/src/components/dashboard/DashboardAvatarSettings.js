@@ -4,7 +4,7 @@ import { userContext } from "../../context/userContext";
 export default function DashboardAvatarSettings(props) {
   const { user } = useContext(userContext);
 
-  if (props.img === "") {
+  if (props.img === "undefined") {
     var username = user.name;
     username = username.split(" ");
 
@@ -21,7 +21,7 @@ export default function DashboardAvatarSettings(props) {
     );
   } else {
     return (
-      <img className="relative rounded-full w-40 h-40" src={props.img} alt="" />
+      <img className="relative rounded-full w-32 h-32" src={props.img} alt="" />
     );
   }
 }

@@ -8,12 +8,12 @@ import DashboardAvatarSettingsMobile from "./DashboardAvatarSettingsMobile";
 export default function DashboardSettings() {
   const { user, imgurl } = useContext(userContext);
   const host = useContext(hostContext);
-  const [imgSrc, setImgSrc] = useState("");
+  const [imgSrc, setImgSrc] = useState("undefined");
   const [name, setName] = useState(user.name);
   const [workTitle, setWorkTitle] = useState(user.work);
   const [phoneNumber, setPhoneNumber] = useState(user.phone);
   const [description, setDescription] = useState(user.description);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -29,16 +29,13 @@ export default function DashboardSettings() {
         headers: { "Content-Type": "multipart/form-data" },
         withCredentials: true,
       })
-      .then((res) => {
-        // console.log(res);
-      });
+      .then((res) => {});
   }
-
   useEffect(() => {
-    if (!user.profileImg === "") {
+    if (imgurl.length != 0) {
       setImgSrc(imgurl);
     }
-  }, [imgSrc]);
+  }, [imgurl]);
   return (
     <div>
       <div className="max-w-screen-xl pb-6 lg:pb-16">
@@ -98,13 +95,15 @@ export default function DashboardSettings() {
                           className="flex-shrink-0 inline-block rounded-full overflow-hidden h-12 w-12"
                           aria-hidden="true"
                         >
-                          <DashboardAvatarSettingsMobile img={imgSrc} />
+                          <DashboardAvatarSettingsMobile
+                            img={imgSrc ? imgSrc : imgurl}
+                          />
                         </div>
                         <div className="ml-5 rounded-md shadow-sm">
-                          <div className="group relative border border-gray-300 rounded-md py-2 px-3 flex items-center justify-center hover:bg-gray-50 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-sky-500">
+                          <div className="group relative border border-gray rounded-md py-2 px-3 flex items-center justify-center hover:bg-primary focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary">
                             <label
                               htmlFor="mobile-user-photo"
-                              className="relative text-sm leading-4 font-medium text-gray-700 pointer-events-none"
+                              className="relative text-sm leading-4 font-medium text-gray-50 pointer-events-none"
                             >
                               <span>Aanpassen</span>
                               <span className="sr-only"> user photo</span>
@@ -113,7 +112,7 @@ export default function DashboardSettings() {
                               id="mobilephoto"
                               name="user-photo"
                               type="file"
-                              className="absolute w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                              className="absolute w-full h-full opacity-0 cursor-pointer border-gray rounded-md"
                               onChange={(e) => {
                                 const [file] = e.target.files;
                                 if (file) {
@@ -128,7 +127,7 @@ export default function DashboardSettings() {
                     </div>
 
                     <div className="hidden relative rounded-full overflow-hidden lg:block">
-                      <DashboardAvatarSettings img={imgSrc} />
+                      <DashboardAvatarSettings img={imgSrc ? imgSrc : imgurl} />
                       <label
                         htmlFor="desktop-user-photo"
                         className="absolute inset-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center text-sm font-medium text-white opacity-0 hover:opacity-100 focus-within:opacity-100"

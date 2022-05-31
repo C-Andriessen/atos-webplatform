@@ -129,7 +129,7 @@ async function edit(req, res) {
     if (req.file) {
       if (user.profileImg !== "") {
         fs.unlinkSync(
-          path.join(__dirname`../tmp/uploads/images/${user.profileImg}`)
+          path.join(__dirname, `../tmp/uploads/images/${user.profileImg}`)
         );
       }
       await User.findByIdAndUpdate(user.id, {
@@ -155,7 +155,7 @@ async function edit(req, res) {
 
 async function profileImg(req, res) {
   try {
-    if (req.params.filename != "undefined") {
+    if (req.params.filename != "undefined" && req.params.filename != "") {
       res.setHeader("Content-Type", "image");
       res.sendFile(
         path.join(__dirname, `../tmp/uploads/images/${req.params.filename}`)
