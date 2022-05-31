@@ -145,7 +145,7 @@ export default function Signin() {
 
                 <div className="text-sm">
                   <a
-                    href="#"
+                    href="/wachtwoordvergeten"
                     className="font-medium text-primary hover:text-purple-400"
                   >
                     Wachtwoord vergeten?

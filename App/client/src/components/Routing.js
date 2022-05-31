@@ -1,10 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import Contact from "../pages/Contact";
 import Dashboard from "../pages/Dashboard";
+import ForgotPassword from "../pages/ForgotPassword";
 import Home from "../pages/Home";
 import Logout from "../pages/Logout";
 import NotFound from "../pages/NotFound";
 import Projects from "../pages/Projects";
+import RecoverPassword from "../pages/RecoverPassword";
 import Register from "../pages/Register";
 import Schools from "../pages/Schools";
 import Signin from "../pages/SignIn";
@@ -27,6 +29,8 @@ function Routing() {
         <Route path="/studenten/student" element={<Student />} />
         <Route path="/confirm" element={<ConfirmEmail />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/wachtwoordvergeten" element={<ForgotPassword />} />
+        <Route path="/herstelwachtwoord" element={<RecoverPassword />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
