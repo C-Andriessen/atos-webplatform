@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema(
     description: { type: String, default: "" },
     work: { type: String, default: "" },
     phone: { type: String, default: "" },
-    active: { type: String, required: true, default: false },
+    active: { type: Boolean, required: true, default: false },
   },
   {
     timestamps: true,

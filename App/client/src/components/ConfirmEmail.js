@@ -15,7 +15,6 @@ export default function ConfirmEmail() {
   useEffect(() => {}, [invalid]);
 
   axios.get(`${host}/api/email/confirmation/${token}`).then((res) => {
-    console.log(res.data);
     if (res.data === "invalid") {
       setInvalid(true);
     }
