@@ -1,5 +1,10 @@
+import axios from "axios";
+import { useContext, useState } from "react";
+import ErrorMessage from "../components/ErrorMessage";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { hostContext } from "../context/hostContext";
+import { userContext } from "../context/userContext";
 
 /*
   This example requires Tailwind CSS v2.0+ 
@@ -18,6 +23,35 @@ import Header from "../components/Header";
   ```
 */
 export default function Signin() {
+  const { user } = useContext(userContext);
+  const host = useContext(hostContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(false);
+
+  const [error, setError] = useState("");
+
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+    axios
+      .post(
+        `${host}/api/user/login`,
+        { email, password, remember },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        if (res.data.errorMessage) {
+          setError(res.data.errorMessage);
+        } else {
+          window.location.href = "/";
+        }
+      });
+  };
+
+  if (user.name) {
+    window.location.href = "/dashboard";
+  }
+
   return (
     <>
       <Header />
@@ -35,11 +69,11 @@ export default function Signin() {
               Registreer hier
             </a>
           </p>
+          {error ? <ErrorMessage message={error} /> : ""}
         </div>
-
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-            <form className="space-y-6" action="#" method="POST">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="email"
@@ -54,7 +88,11 @@ export default function Signin() {
                     type="email"
                     autoComplete="email"
                     required
+                    value={email}
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                    onChange={(e) => {
+                      setEmail(e.target.value.toLocaleLowerCase());
+                    }}
                   />
                 </div>
               </div>
@@ -71,9 +109,12 @@ export default function Signin() {
                     id="password"
                     name="password"
                     type="password"
+                    value={password}
                     autoComplete="current-password"
-                    required
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
                   />
                 </div>
               </div>
@@ -84,6 +125,14 @@ export default function Signin() {
                     id="remember-me"
                     name="remember-me"
                     type="checkbox"
+                    checked={remember}
+                    onChange={() => {
+                      if (remember === false) {
+                        setRemember(true);
+                      } else {
+                        setRemember(false);
+                      }
+                    }}
                     className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                   />
                   <label

@@ -1,7 +1,12 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import { userContext } from "../context/userContext";
+import SignButtonsHeader from "./SignButtonsHeader";
+import SignButtonsMobile from "./SignButtonsMobile";
+import DashboardButtonHeader from "./DashboardButtonHeader";
+import AvatarHeader from "./AvatarHeader";
 
 const navigation = [
   { name: "Opdrachten", href: "/opdrachten" },
@@ -12,6 +17,7 @@ const navigation = [
 ];
 
 export default function Header() {
+  const { user } = useContext(userContext);
   return (
     <header>
       <Popover className="relative bg-darkmode">
@@ -60,20 +66,7 @@ export default function Header() {
               </a>
             ))}
           </Popover.Group>
-          <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <a
-              href="login"
-              className="whitespace-nowrap text-base font-medium text-light hover:text-text-gray-400"
-            >
-              Log in
-            </a>
-            <a
-              href="/registreer"
-              className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary hover:bg-purple-500"
-            >
-              Registreer
-            </a>
-          </div>
+          {user.name ? <AvatarHeader /> : <SignButtonsHeader />}
         </div>
 
         <Transition
@@ -117,20 +110,7 @@ export default function Header() {
                     </a>
                   ))}
                 </div>
-                <div className="mt-6">
-                  <a
-                    href="/registreer"
-                    className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary hover:bg-purple-500"
-                  >
-                    Registreer
-                  </a>
-                  <p className="mt-6 text-center text-base font-medium text-light">
-                    Bestaande klant?{" "}
-                    <a href="/login" className="text-primary">
-                      Log in
-                    </a>
-                  </p>
-                </div>
+                {user.name ? <DashboardButtonHeader /> : <SignButtonsMobile />}
               </div>
             </div>
           </Popover.Panel>

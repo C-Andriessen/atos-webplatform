@@ -3,7 +3,7 @@ const objectId = mongoose.Schema.Types.ObjectId;
 
 const educationSchema = new mongoose.Schema({
     name: {type: String, required: true},
-    students: [{type: objectId, ref: "users"}]
+    students: [{type: objectId, ref: "student"}]
 },{
     timestamps: true,
 })

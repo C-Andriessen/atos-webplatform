@@ -16,14 +16,17 @@ mongoose.connect(process.env.MONGODB_CONNECT, (err) => {
   console.log("Connected to the db");
 });
 
-app.use(cors());
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(cookieParser());
 app.use(require("morgan")("tiny"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use("/seeder", require("./routers/seederRouter"));
 app.use("/api/user", require("./routers/userRouter"));
+<<<<<<< HEAD
 
 //test frontend to backend connection
 app.use("/test", require("./routers/testRouter"));
+=======
+app.use("/api/email", require("./routers/emailRouter"));
+>>>>>>> e1943f2dd39358ba6349f55292f2799efbb2d0c4
