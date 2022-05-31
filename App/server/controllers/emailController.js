@@ -28,7 +28,7 @@ function createAndSendMail(user, email) {
     process.env.EMAIL_SECRET
   );
 
-  const url = `http://localhost:3000/confirm?token=${emailToken}`;
+  const url = `https://atos.c-demo.dev/confirm?token=${emailToken}`;
 
   transporter.sendMail({
     to: email,
