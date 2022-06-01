@@ -4,7 +4,7 @@ import { userContext } from "../../context/userContext";
 export default function DashboardAvatarSettingsMobile(props) {
   const { user } = useContext(userContext);
 
-  if (props.img === "undefined") {
+  if (props.img === "") {
     var username = user.name;
     username = username.split(" ");
 
@@ -21,7 +21,11 @@ export default function DashboardAvatarSettingsMobile(props) {
     );
   } else {
     return (
-      <img className="rounded-full h-full w-full" src={props.img} alt="" />
+      <img
+        className="rounded-full h-full w-full object-cover"
+        src={props.img}
+        alt=""
+      />
     );
   }
 }

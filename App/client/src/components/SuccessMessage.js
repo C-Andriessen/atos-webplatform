@@ -3,7 +3,7 @@ import { CheckCircleIcon } from "@heroicons/react/solid";
 
 export default function SuccessMessage(props) {
   return (
-    <div className="rounded-md bg-green-50 p-2 mt-5">
+    <div className="rounded-md bg-green-50 p-4 mt-6">
       <div className="flex">
         <div className="flex-shrink-0">
           <CheckCircleIcon

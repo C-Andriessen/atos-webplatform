@@ -14,6 +14,9 @@ async function getUser(req, res) {
       email: user.email,
       gender: user.sex,
       profileImg: user.profileImg,
+      work: user.work,
+      phone: user.phone,
+      description: user.description,
     });
   } catch (err) {
     console.log(err);
@@ -126,6 +129,20 @@ async function edit(req, res) {
   try {
     const user = req.user;
     const { name, work, phone, description } = req.body;
+
+    const filledIn = await validation.isFilledIn({
+      "je volledige naam": name,
+    });
+
+    if (filledIn) {
+      if (req.file) {
+        fs.unlinkSync(
+          path.join(__dirname, `../tmp/uploads/images/${req.file.filename}`)
+        );
+      }
+      return res.send({ errorMessage: filledIn });
+    }
+
     if (req.file) {
       if (user.profileImg !== "") {
         fs.unlinkSync(
@@ -139,6 +156,7 @@ async function edit(req, res) {
         description,
         profileImg: req.file.filename,
       });
+      res.send(req.file.filename);
     } else {
       await User.findByIdAndUpdate(user.id, {
         name,
@@ -146,8 +164,8 @@ async function edit(req, res) {
         phone,
         description,
       });
+      res.end();
     }
-    res.end();
   } catch (e) {
     console.log(e);
   }

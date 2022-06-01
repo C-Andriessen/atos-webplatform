@@ -2,18 +2,24 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { hostContext } from "../../context/hostContext";
 import { userContext } from "../../context/userContext";
+import ErrorMessage from "../ErrorMessage";
+import SuccessMessage from "../SuccessMessage";
 import DashboardAvatarSettings from "./DashboardAvatarSettings";
 import DashboardAvatarSettingsMobile from "./DashboardAvatarSettingsMobile";
 
 export default function DashboardSettings() {
-  const { user, imgurl } = useContext(userContext);
+  const { user, imgurl, setImgurl } = useContext(userContext);
   const host = useContext(hostContext);
-  const [imgSrc, setImgSrc] = useState("undefined");
+  const [imgSrc, setImgSrc] = useState(imgurl);
   const [name, setName] = useState(user.name);
-  const [workTitle, setWorkTitle] = useState(user.work);
-  const [phoneNumber, setPhoneNumber] = useState(user.phone);
-  const [description, setDescription] = useState(user.description);
+  const [workTitle, setWorkTitle] = useState(user.work ? user.work : "");
+  const [phoneNumber, setPhoneNumber] = useState(user.phone ? user.phone : "");
+  const [description, setDescription] = useState(
+    user.description ? user.description : ""
+  );
+  const [error, setError] = useState("");
   const [image, setImage] = useState("");
+  const [success, setSuccess] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -29,7 +35,18 @@ export default function DashboardSettings() {
         headers: { "Content-Type": "multipart/form-data" },
         withCredentials: true,
       })
-      .then((res) => {});
+      .then((res) => {
+        if (res.data.errorMessage) {
+          setError(res.data.errorMessage);
+          setSuccess("");
+        } else {
+          if (res.data) {
+            setImgurl(`${host}/api/user/profileimg/${res.data}`);
+          }
+          setSuccess("Gegevens zijn successvol aangepast");
+          setError("");
+        }
+      });
   }
   useEffect(() => {
     if (imgurl.length != 0) {
@@ -39,7 +56,7 @@ export default function DashboardSettings() {
   return (
     <div>
       <div className="max-w-screen-xl pb-6 lg:pb-16">
-        <div className="bg-darkmode rounded-lg shadow overflow-hidden">
+        <div className="bg-darkmode rounded-lg overflow-hidden">
           <div className="divide-y divide-gray-200 lg:grid lg:grid-cols-20 lg:divide-y-0 lg:divide-x">
             <form
               className="divide-y divide-gray-200 lg:col-span-9"
@@ -49,7 +66,9 @@ export default function DashboardSettings() {
               {/* Profile section */}
               <div className="py-6 px-4 sm:p-6 lg:pb-8">
                 <div>
-                  <p className="mt-1 text-sm text-light">
+                  {error ? <ErrorMessage message={error} /> : ""}
+                  {success ? <SuccessMessage message={success} /> : ""}
+                  <p className="mt-5 text-sm text-light">
                     Dit is uw publieke informatie, dus let goed op want iedereen
                     kan dit zien!
                   </p>
@@ -95,9 +114,7 @@ export default function DashboardSettings() {
                           className="flex-shrink-0 inline-block rounded-full overflow-hidden h-12 w-12"
                           aria-hidden="true"
                         >
-                          <DashboardAvatarSettingsMobile
-                            img={imgSrc ? imgSrc : imgurl}
-                          />
+                          <DashboardAvatarSettingsMobile img={imgSrc} />
                         </div>
                         <div className="ml-5 rounded-md shadow-sm">
                           <div className="group relative border border-gray rounded-md py-2 px-3 flex items-center justify-center hover:bg-primary focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary">
@@ -127,7 +144,7 @@ export default function DashboardSettings() {
                     </div>
 
                     <div className="hidden relative rounded-full overflow-hidden lg:block">
-                      <DashboardAvatarSettings img={imgSrc ? imgSrc : imgurl} />
+                      <DashboardAvatarSettings img={imgSrc} />
                       <label
                         htmlFor="desktop-user-photo"
                         className="absolute inset-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center text-sm font-medium text-white opacity-0 hover:opacity-100 focus-within:opacity-100"
@@ -158,7 +175,8 @@ export default function DashboardSettings() {
                       htmlFor="first-name"
                       className="block text-sm font-medium text-light"
                     >
-                      Volledige naam
+                      Volledige naam{" "}
+                      <span className="text-rose-500 font-bold">*</span>
                     </label>
                     <input
                       type="text"
@@ -182,8 +200,8 @@ export default function DashboardSettings() {
                     </label>
                     <input
                       type="text"
-                      name="url"
-                      id="url"
+                      name="worktitle"
+                      id="worktitle"
                       value={workTitle}
                       className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
                       onChange={(e) => {
@@ -216,12 +234,12 @@ export default function DashboardSettings() {
                       htmlFor="email"
                       className="block text-sm font-medium text-light"
                     >
-                      Email
+                      Email <span className="text-rose-500 font-bold">*</span>
                     </label>
                     <input
                       type="text"
                       value={user.email}
-                      className="mt-1 block w-full text-primary font-bold border border-gray-300 rounded-md shadow-md sm:text-sm"
+                      className="mt-1 block w-full text-gray-800 font-bold border border-gray-300 rounded-md shadow-md sm:text-sm"
                       onChange={() => {}}
                     />
                   </div>
@@ -232,16 +250,10 @@ export default function DashboardSettings() {
               <div className="pt-6 divide-y divide-gray-200">
                 <div className="mt-4 py-4 px-4 flex justify-end sm:px-6">
                   <button
-                    type="button"
-                    className="bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
-                  >
-                    Cancel
-                  </button>
-                  <button
                     type="submit"
-                    className="ml-5 bg-sky-700 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
+                    className="ml-5 bg-primary border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                   >
-                    Save
+                    Opslaan
                   </button>
                 </div>
               </div>
