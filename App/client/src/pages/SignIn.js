@@ -43,7 +43,7 @@ export default function Signin() {
         if (res.data.errorMessage) {
           setError(res.data.errorMessage);
         } else {
-          window.location.href = "/";
+          window.location.reload();
         }
       });
   };
