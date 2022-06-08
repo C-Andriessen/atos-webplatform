@@ -21,7 +21,11 @@ export default function DashboardAvatarSettings(props) {
     );
   } else {
     return (
-      <img className="relative rounded-full w-40 h-40" src={props.img} alt="" />
+      <img
+        className="relative rounded-full w-32 h-32 object-cover"
+        src={props.img}
+        alt=""
+      />
     );
   }
 }

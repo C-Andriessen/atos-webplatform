@@ -83,7 +83,11 @@ export default function AvatarHeader() {
         >
           <div>
             <Menu.Button className="inline-flex rounded-full z-10 ">
-              <img src={imgurl} alt="" className="rounded-full h-12 w-12" />
+              <img
+                src={imgurl}
+                alt=""
+                className="rounded-full h-12 w-12 object-cover"
+              />
             </Menu.Button>
           </div>
 

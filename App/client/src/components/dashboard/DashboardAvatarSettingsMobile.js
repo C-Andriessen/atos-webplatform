@@ -21,7 +21,11 @@ export default function DashboardAvatarSettingsMobile(props) {
     );
   } else {
     return (
-      <img className="rounded-full h-full w-full" src={props.img} alt="" />
+      <img
+        className="rounded-full h-full w-full object-cover"
+        src={props.img}
+        alt=""
+      />
     );
   }
 }

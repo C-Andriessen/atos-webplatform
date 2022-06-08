@@ -2,18 +2,24 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { hostContext } from "../../context/hostContext";
 import { userContext } from "../../context/userContext";
+import ErrorMessage from "../ErrorMessage";
+import SuccessMessage from "../SuccessMessage";
 import DashboardAvatarSettings from "./DashboardAvatarSettings";
 import DashboardAvatarSettingsMobile from "./DashboardAvatarSettingsMobile";
 
 export default function DashboardSettings() {
-  const { user, imgurl } = useContext(userContext);
+  const { user, imgurl, setImgurl } = useContext(userContext);
   const host = useContext(hostContext);
-  const [imgSrc, setImgSrc] = useState("");
+  const [imgSrc, setImgSrc] = useState(imgurl);
   const [name, setName] = useState(user.name);
-  const [workTitle, setWorkTitle] = useState(user.work);
-  const [phoneNumber, setPhoneNumber] = useState(user.phone);
-  const [description, setDescription] = useState(user.description);
-  const [image, setImage] = useState(null);
+  const [workTitle, setWorkTitle] = useState(user.work ? user.work : "");
+  const [phoneNumber, setPhoneNumber] = useState(user.phone ? user.phone : "");
+  const [description, setDescription] = useState(
+    user.description ? user.description : ""
+  );
+  const [error, setError] = useState("");
+  const [image, setImage] = useState("");
+  const [success, setSuccess] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -30,19 +36,27 @@ export default function DashboardSettings() {
         withCredentials: true,
       })
       .then((res) => {
-        // console.log(res);
+        if (res.data.errorMessage) {
+          setError(res.data.errorMessage);
+          setSuccess("");
+        } else {
+          if (res.data) {
+            setImgurl(`${host}/api/user/profileimg/${res.data}`);
+          }
+          setSuccess("Gegevens zijn successvol aangepast");
+          setError("");
+        }
       });
   }
-
   useEffect(() => {
-    if (!user.profileImg === "") {
+    if (imgurl.length != 0) {
       setImgSrc(imgurl);
     }
-  }, [imgSrc]);
+  }, [imgurl]);
   return (
     <div>
       <div className="max-w-screen-xl pb-6 lg:pb-16">
-        <div className="bg-darkmode rounded-lg shadow overflow-hidden">
+        <div className="bg-darkmode rounded-lg overflow-hidden">
           <div className="divide-y divide-gray-200 lg:grid lg:grid-cols-20 lg:divide-y-0 lg:divide-x">
             <form
               className="divide-y divide-gray-200 lg:col-span-9"
@@ -52,7 +66,9 @@ export default function DashboardSettings() {
               {/* Profile section */}
               <div className="py-6 px-4 sm:p-6 lg:pb-8">
                 <div>
-                  <p className="mt-1 text-sm text-light">
+                  {error ? <ErrorMessage message={error} /> : ""}
+                  {success ? <SuccessMessage message={success} /> : ""}
+                  <p className="mt-5 text-sm text-light">
                     Dit is uw publieke informatie, dus let goed op want iedereen
                     kan dit zien!
                   </p>
@@ -101,10 +117,10 @@ export default function DashboardSettings() {
                           <DashboardAvatarSettingsMobile img={imgSrc} />
                         </div>
                         <div className="ml-5 rounded-md shadow-sm">
-                          <div className="group relative border border-gray-300 rounded-md py-2 px-3 flex items-center justify-center hover:bg-gray-50 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-sky-500">
+                          <div className="group relative border border-gray rounded-md py-2 px-3 flex items-center justify-center hover:bg-primary focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary">
                             <label
                               htmlFor="mobile-user-photo"
-                              className="relative text-sm leading-4 font-medium text-gray-700 pointer-events-none"
+                              className="relative text-sm leading-4 font-medium text-gray-50 pointer-events-none"
                             >
                               <span>Aanpassen</span>
                               <span className="sr-only"> user photo</span>
@@ -113,7 +129,7 @@ export default function DashboardSettings() {
                               id="mobilephoto"
                               name="user-photo"
                               type="file"
-                              className="absolute w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                              className="absolute w-full h-full opacity-0 cursor-pointer border-gray rounded-md"
                               onChange={(e) => {
                                 const [file] = e.target.files;
                                 if (file) {
@@ -159,7 +175,8 @@ export default function DashboardSettings() {
                       htmlFor="first-name"
                       className="block text-sm font-medium text-light"
                     >
-                      Volledige naam
+                      Volledige naam{" "}
+                      <span className="text-rose-500 font-bold">*</span>
                     </label>
                     <input
                       type="text"
@@ -183,8 +200,8 @@ export default function DashboardSettings() {
                     </label>
                     <input
                       type="text"
-                      name="url"
-                      id="url"
+                      name="worktitle"
+                      id="worktitle"
                       value={workTitle}
                       className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
                       onChange={(e) => {
@@ -217,12 +234,12 @@ export default function DashboardSettings() {
                       htmlFor="email"
                       className="block text-sm font-medium text-light"
                     >
-                      Email
+                      Email <span className="text-rose-500 font-bold">*</span>
                     </label>
                     <input
                       type="text"
                       value={user.email}
-                      className="mt-1 block w-full text-primary font-bold border border-gray-300 rounded-md shadow-md sm:text-sm"
+                      className="mt-1 block w-full text-gray-800 font-bold border border-gray-300 rounded-md shadow-md sm:text-sm"
                       onChange={() => {}}
                     />
                   </div>
@@ -233,16 +250,10 @@ export default function DashboardSettings() {
               <div className="pt-6 divide-y divide-gray-200">
                 <div className="mt-4 py-4 px-4 flex justify-end sm:px-6">
                   <button
-                    type="button"
-                    className="bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
-                  >
-                    Cancel
-                  </button>
-                  <button
                     type="submit"
-                    className="ml-5 bg-sky-700 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
+                    className="ml-5 bg-primary border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                   >
-                    Save
+                    Opslaan
                   </button>
                 </div>
               </div>

@@ -22,7 +22,7 @@ export default function DashoardAvatar() {
   } else {
     return (
       <img
-        className="inline-block h-10 w-10 rounded-full"
+        className="inline-block h-10 w-10 rounded-full object-cover"
         src={imgurl}
         alt=""
       />

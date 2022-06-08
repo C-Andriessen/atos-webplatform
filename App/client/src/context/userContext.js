@@ -13,7 +13,9 @@ const UserContextProvider = ({ children }) => {
     axios.get(`${host}/api/user/`, { withCredentials: true }).then((res) => {
       if (res.data.name) {
         setUser(res.data);
-        setImgurl(`${host}/api/user/profileimg/${user.profileImg}`);
+        if (res.data.profileImg !== "") {
+          setImgurl(`${host}/api/user/profileimg/${user.profileImg}`);
+        }
       }
     });
   }
@@ -25,7 +27,7 @@ const UserContextProvider = ({ children }) => {
   }, [imgurl]);
 
   return (
-    <userContext.Provider value={{ user, imgurl }}>
+    <userContext.Provider value={{ user, imgurl, setImgurl }}>
       {children}
     </userContext.Provider>
   );

@@ -8,6 +8,8 @@ router.post("/register", userController.register);
 router.post("/login", userController.login);
 router.post("/logout", userController.logout);
 router.post("/update", [auth, upload.single("file")], userController.edit);
+router.post("/forgotpassword", userController.forgetReq);
+router.post("/recoverpassword", userController.recoverPassword);
 router.get("/profileimg/:filename", userController.profileImg);
 router.get("/", auth, userController.getUser);
 

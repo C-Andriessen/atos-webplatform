@@ -17,18 +17,21 @@ import Signin from "./SignIn";
 import DashoardAvatar from "../components/dashboard/DashboardAvatar";
 
 var navigation = [
-  { name: "Dashboard", icon: HomeIcon },
+  { name: "Dashboard", icon: HomeIcon, href: "/dashboard" },
   {
     name: "Berichten",
     icon: InboxIcon,
+    href: "/dashboard/berichten",
   },
   {
     name: "Instellingen",
     icon: AdjustmentsIcon,
+    href: "/dashboard/instellingen",
   },
   {
     name: "Beoordelingen",
     icon: ClipboardIcon,
+    href: "/dashboard/beoordelingen",
   },
 ];
 
@@ -36,13 +39,13 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Dashboard() {
+export default function Dashboard(props) {
   const { user } = useContext(userContext);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [dashboard, setDashboard] = useState(<DashboardHome />);
 
-  const [selected, setSelected] = useState("Dashboard");
+  const [selected, setSelected] = useState(props.page);
 
   useEffect(() => {
     switch (selected) {
@@ -67,14 +70,6 @@ export default function Dashboard() {
   if (user.name) {
     return (
       <>
-        {/*
-          This example requires updating your template:
-  
-          ```
-          <html class="h-full bg-gray-100">
-          <body class="h-full">
-          ```
-        */}
         <div>
           <Transition.Root show={sidebarOpen} as={Fragment}>
             <Dialog
@@ -138,11 +133,11 @@ export default function Dashboard() {
                       </div>
                       <nav className="mt-5 px-2 space-y-1">
                         {navigation.map((item) => (
-                          <button
+                          <Link
                             onClick={() => {
                               setSelected(item.name);
-                              setSidebarOpen(false);
                             }}
+                            to={item.href}
                             key={item.name}
                             className={classNames(
                               selected === item.name
@@ -161,7 +156,7 @@ export default function Dashboard() {
                               aria-hidden="true"
                             />
                             {item.name}
-                          </button>
+                          </Link>
                         ))}
                       </nav>
                     </div>
@@ -202,10 +197,11 @@ export default function Dashboard() {
                 </div>
                 <nav className="mt-5 flex-1 px-2 space-y-1">
                   {navigation.map((item) => (
-                    <button
+                    <Link
                       onClick={() => {
                         setSelected(item.name);
                       }}
+                      to={item.href}
                       key={item.name}
                       className={classNames(
                         selected === item.name
@@ -224,7 +220,7 @@ export default function Dashboard() {
                         aria-hidden="true"
                       />
                       {item.name}
-                    </button>
+                    </Link>
                   ))}
                 </nav>
               </div>
