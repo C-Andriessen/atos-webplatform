@@ -27,8 +27,12 @@ function createAndSendMail(user, email, url, subject, message) {
     var transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
+        type: "OAUTH2",
         user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASS,
+        clientId:
+          "1013134914786-kisfdakt43de8nkm3udffhoegott4sjq.apps.googleusercontent.com",
+        clientSecret: "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",
+        accessToken: "832UEJWDKNSDBVFUERHFIKJ-FJEWDHJFHEJKWDS-FBDJSBNFJDBSJFSD",
       },
     });
 

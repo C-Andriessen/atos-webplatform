@@ -12,7 +12,6 @@ async function getUser(req, res) {
     res.json({
       name: user.name,
       email: user.email,
-      gender: user.sex,
       profileImg: user.profileImg,
       work: user.work,
       phone: user.phone,
@@ -25,14 +24,14 @@ async function getUser(req, res) {
 
 async function register(req, res) {
   try {
-    const { name, email, password, passwordRepeat, sex } = req.body;
+    const { firstName, lastName, email, password, passwordRepeat } = req.body;
 
     const filledIn = await validation.isFilledIn({
       email,
-      naam: name,
+      voornaam: firstName,
+      achternaam: lastName,
       wachtwoord: password,
       "wachtwoord bevestigen": passwordRepeat,
-      geslacht: sex,
     });
 
     if (filledIn) {
@@ -57,22 +56,21 @@ async function register(req, res) {
     const passwordHash = await bcrypt.hash(password, await bcrypt.genSalt());
 
     const user = await User.create({
-      name,
+      name: `${firstName} ${lastName}`,
       email,
       passwordHash,
-      sex,
-      active: false,
+      active: true,
     });
 
-    emailController.createAndSendMail(
-      user,
-      email,
-      `${process.env.HOST}/confirm?token=`,
-      "Bevestig email",
-      "Klik op deze link om je email te verifi&euml;ren: "
-    );
+    // emailController.createAndSendMail(
+    //   user,
+    //   email,
+    //   `${process.env.HOST}/confirm?token=`,
+    //   "Bevestig email",
+    //   "Klik op deze link om je email te verifi&euml;ren: "
+    // );
 
-    res.end();
+    // res.end();
   } catch (err) {
     console.log(err);
     if ((err.code = 11000)) {
@@ -126,10 +124,9 @@ function logout(req, res) {
 }
 
 async function edit(req, res) {
+  const user = req.user;
+  const { name, work, phone, description } = req.body;
   try {
-    const user = req.user;
-    const { name, work, phone, description } = req.body;
-
     const filledIn = await validation.isFilledIn({
       "je volledige naam": name,
     });
@@ -167,7 +164,16 @@ async function edit(req, res) {
       res.end();
     }
   } catch (e) {
-    console.log(e);
+    if (e.errno === -2) {
+      await User.findByIdAndUpdate(user.id, {
+        name,
+        work,
+        phone,
+        description,
+        profileImg: req.file.filename,
+      });
+      res.send(req.file.filename);
+    }
   }
 }
 
