@@ -13,10 +13,10 @@ export default function Register() {
   const host = useContext(hostContext);
 
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRepeat, setPasswordRepeat] = useState("");
-  const [sex, setSex] = useState("man");
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
@@ -28,10 +28,10 @@ export default function Register() {
     axios
       .post(`${host}/api/user/register`, {
         email,
-        name,
+        firstName,
+        lastName,
         password,
         passwordRepeat,
-        sex,
       })
       .then((res) => {
         console.log(res.data);
@@ -40,10 +40,10 @@ export default function Register() {
         } else {
           setError("");
           setEmail("");
-          setName("");
+          setFirstName("");
+          setLastName("");
           setPassword("");
           setPasswordRepeat("");
-          setSex("");
           setSuccess(true);
         }
       });
@@ -102,42 +102,40 @@ export default function Register() {
                   htmlFor="fullname"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Volledige naam
+                  Voornaam
                 </label>
                 <div className="mt-1">
                   <input
                     id="name"
                     name="name"
-                    value={name}
+                    value={firstName}
                     autoComplete="name"
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
                     onChange={(e) => {
-                      setName(e.target.value);
+                      setFirstName(e.target.value);
                     }}
                   />
                 </div>
               </div>
-
               <div>
                 <label
-                  htmlFor="sex"
+                  htmlFor="fullname"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Geslacht
+                  Achternaam
                 </label>
-                <select
-                  id="sex"
-                  name="sex"
-                  value={sex}
-                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-                  onChange={(e) => {
-                    setSex(e.target.value.toLocaleLowerCase());
-                  }}
-                >
-                  <option value="man">Man</option>
-                  <option value="vrouw">Vrouw</option>
-                  <option value="none">Zeg ik liever niet</option>
-                </select>
+                <div className="mt-1">
+                  <input
+                    id="name"
+                    name="name"
+                    value={lastName}
+                    autoComplete="name"
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                    onChange={(e) => {
+                      setLastName(e.target.value);
+                    }}
+                  />
+                </div>
               </div>
 
               <div>

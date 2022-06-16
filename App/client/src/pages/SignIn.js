@@ -142,7 +142,7 @@ export default function Signin() {
                     Onthoud mij
                   </label>
                 </div>
-
+                {/* 
                 <div className="text-sm">
                   <a
                     href="/wachtwoordvergeten"
@@ -150,7 +150,7 @@ export default function Signin() {
                   >
                     Wachtwoord vergeten?
                   </a>
-                </div>
+                </div> */}
               </div>
 
               <div>
