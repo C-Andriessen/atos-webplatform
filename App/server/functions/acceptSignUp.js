@@ -16,7 +16,7 @@ async function accept(){
             });
         }else{
             //declined
-            return
+            return;
         }
     }else{
         return;
