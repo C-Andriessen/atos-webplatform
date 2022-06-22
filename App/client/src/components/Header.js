@@ -7,6 +7,8 @@ import SignButtonsHeader from "./SignButtonsHeader";
 import SignButtonsMobile from "./SignButtonsMobile";
 import DashboardButtonHeader from "./DashboardButtonHeader";
 import AvatarHeader from "./AvatarHeader";
+import { ReactComponent as StuDienst } from "../images/Logo_Slogan.svg";
+import { ReactComponent as StuDienstLogo } from "../images/Logo_StuDienst.svg";
 
 const navigation = [
   { name: "Opdrachten", href: "/opdrachten" },
@@ -25,7 +27,7 @@ export default function Header() {
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <a href="/">
               <h1 className="text-white text-2xl font-bold">
-                Student<span className="text-primary">IN</span>Werk
+                <StuDienst className="w-full" />
               </h1>
             </a>
           </div>
@@ -87,7 +89,7 @@ export default function Header() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h1 className="text-white text-2xl font-bold">
-                      Student<span className="text-primary">IN</span>Werk
+                      <StuDienstLogo className="w-full" />
                     </h1>
                   </div>
                   <div className="-mr-2">

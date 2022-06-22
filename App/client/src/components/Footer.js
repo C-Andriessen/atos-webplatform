@@ -78,7 +78,7 @@ export default function Footer() {
           ))}
         </div>
         <p className="mt-8 text-center text-base text-primary">
-          &copy; 2020 StudentINWerk bezitten alle rechten.
+          &copy; 2022 StuDienst bezitten alle rechten.
         </p>
       </div>
     </footer>
