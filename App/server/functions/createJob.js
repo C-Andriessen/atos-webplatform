@@ -6,8 +6,8 @@ async function createJob(res, req){
         title: req.title,
         user: req.user._id,
         content: req.content,
-        //acceptedStudent: //empty string,
-        //declinedStudent: //empty array,       
+        acceptedStudent: "", 
+        declinedStudent: [],      
     })
     res.end();
 }
