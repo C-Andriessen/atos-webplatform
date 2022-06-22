@@ -8,9 +8,9 @@ async function signUp(req, res){
 
         await Pending.create({
             user: req.user._id,
-            school: ,//form data
-            education:, //form data
-            studentId:, //form data
+            school: req.school,
+            education: req.education,
+            studentId: req.student,
         });
     }else{
         return;
