@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { hostContext } from "../../context/hostContext";
 import ErrorMessage from "../ErrorMessage";
+import SuccessMessage from "../SuccessMessage";
 
 export default function DashboardOproep() {
   const host = useContext(hostContext);
@@ -29,8 +30,15 @@ export default function DashboardOproep() {
       .then((res) => {
         if (res.data.errorMessage) {
           setError(res.data.errorMessage);
+          setSuccess("");
         } else {
           setError("");
+          setSuccess("Uw opdracht is succesvol geplaatst");
+          setTitle("");
+          setContent("");
+          setDescription("");
+          setImage("");
+          setImageSrc("");
         }
       });
   }
@@ -39,6 +47,7 @@ export default function DashboardOproep() {
     <div>
       <div>
         {error ? <ErrorMessage message={error} /> : ""}
+        {success ? <SuccessMessage message={success} /> : ""}
         <div className="md:grid md:grid-cols-1 md:gap-6 mt-5">
           <div className="mt-5 md:mt-0 md:col-span-2">
             <form onSubmit={handleSubmit}>
@@ -139,10 +148,12 @@ export default function DashboardOproep() {
                             className="relative cursor-pointer  rounded-md font-bold text-primary hover:text-purple-700 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500 flex flex-col"
                           >
                             <span>Upload je bestand</span>
-                            <img
-                              src={imageSrc}
-                              className="object-contain my-4"
-                            />
+                            {imageSrc && (
+                              <img
+                                src={imageSrc}
+                                className="object-contain my-4"
+                              />
+                            )}
                             <input
                               id="file"
                               name="file"
@@ -158,9 +169,6 @@ export default function DashboardOproep() {
                             />
                           </label>
                         </div>
-                        <p className="text-xs text-white">
-                          PNG, JPG, GIF up to 10MB
-                        </p>
                       </div>
                     </div>
                   </div>
