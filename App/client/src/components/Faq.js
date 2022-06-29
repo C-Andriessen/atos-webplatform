@@ -55,7 +55,7 @@ export default function Faq() {
                       </Disclosure.Button>
                     </dt>
                     <Disclosure.Panel as="dd" className="mt-2 pr-12">
-                      <p className="text-base text-light">{faq.answer}</p>
+                      <p className="text-base text-primary">{faq.answer}</p>
                     </Disclosure.Panel>
                   </>
                 )}

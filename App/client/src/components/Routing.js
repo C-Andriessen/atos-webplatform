@@ -11,6 +11,7 @@ import RecoverPassword from "../pages/RecoverPassword";
 import Register from "../pages/Register";
 import Schools from "../pages/Schools";
 import Signin from "../pages/SignIn";
+import SingleProject from "../pages/SingleProject";
 import Student from "../pages/Student";
 import Students from "../pages/Students";
 import ConfirmEmail from "./ConfirmEmail";
@@ -45,6 +46,7 @@ function Routing() {
         <Route path="/wachtwoordvergeten" element={<ForgotPassword />} />
         <Route path="/herstelwachtwoord" element={<RecoverPassword />} />
         <Route path="/over-ons" element={<About />} />
+        <Route path="/opdracht/:id" element={<SingleProject />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

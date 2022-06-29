@@ -1,29 +1,44 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import { hostContext } from "../../context/hostContext";
+import ErrorMessage from "../ErrorMessage";
 
 export default function DashboardOproep() {
   const host = useContext(hostContext);
   const [image, setImage] = useState("");
   const [imageSrc, setImageSrc] = useState("");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [description, setDescription] = useState("");
+
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
     formData.append("file", image);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("content", content);
     axios
       .post(`${host}/api/post/create`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
         withCredentials: true,
       })
       .then((res) => {
-        console.log(res);
+        if (res.data.errorMessage) {
+          setError(res.data.errorMessage);
+        } else {
+          setError("");
+        }
       });
   }
 
   return (
     <div>
       <div>
+        {error ? <ErrorMessage message={error} /> : ""}
         <div className="md:grid md:grid-cols-1 md:gap-6 mt-5">
           <div className="mt-5 md:mt-0 md:col-span-2">
             <form onSubmit={handleSubmit}>
@@ -42,6 +57,10 @@ export default function DashboardOproep() {
                           type="text"
                           name="title"
                           id="title"
+                          value={title}
+                          onChange={(e) => {
+                            setTitle(e.target.value);
+                          }}
                           className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full  rounded-md sm:text-sm border-gray-300"
                           placeholder="Geef de titel van de oproep op"
                         />
@@ -61,6 +80,10 @@ export default function DashboardOproep() {
                         id="description"
                         name="description"
                         rows={3}
+                        value={description}
+                        onChange={(e) => {
+                          setDescription(e.target.value);
+                        }}
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                         placeholder="Kleine beschrijving die in de preview zichtbaar is"
                         defaultValue={""}
@@ -80,9 +103,12 @@ export default function DashboardOproep() {
                         id="content"
                         name="content"
                         rows={3}
+                        value={content}
+                        onChange={(e) => {
+                          setContent(e.target.value);
+                        }}
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                         placeholder="Dit is de tekst die zichtbaar is op de pagina van de oproep"
-                        defaultValue={""}
                       />
                     </div>
                   </div>

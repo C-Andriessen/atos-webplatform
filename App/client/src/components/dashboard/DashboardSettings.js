@@ -147,7 +147,7 @@ export default function DashboardSettings() {
                       <DashboardAvatarSettings img={imgSrc} />
                       <label
                         htmlFor="desktop-user-photo"
-                        className="absolute inset-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center text-sm font-medium text-white opacity-0 hover:opacity-100 focus-within:opacity-100"
+                        className="absolute inset-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center text-sm font-medium text-white opacity-70 hover:opacity-100 focus-within:opacity-100"
                       >
                         <span>Aanpassen</span>
                         <span className="sr-only"> user photo</span>
