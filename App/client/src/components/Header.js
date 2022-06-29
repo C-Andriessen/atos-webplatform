@@ -14,7 +14,7 @@ const navigation = [
   { name: "Opdrachten", href: "/opdrachten" },
   { name: "Studenten", href: "/studenten" },
   { name: "Scholen", href: "/scholen" },
-  { name: "Over ons", href: "#" },
+  { name: "Over ons", href: "/over-ons" },
   { name: "Contact", href: "/contact" },
 ];
 

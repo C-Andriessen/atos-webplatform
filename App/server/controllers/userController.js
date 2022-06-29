@@ -70,7 +70,7 @@ async function register(req, res) {
     //   "Klik op deze link om je email te verifi&euml;ren: "
     // );
 
-    // res.end();
+    res.end();
   } catch (err) {
     console.log(err);
     if ((err.code = 11000)) {

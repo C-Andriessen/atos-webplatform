@@ -89,7 +89,6 @@ export default function Projects() {
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa
               libero labore natus atque, ducimus sed.
             </p>
-            <Search />
           </div>
           <div className="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
             {posts.map((post) => (

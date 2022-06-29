@@ -16,23 +16,19 @@ import { userContext } from "../context/userContext";
 import Signin from "./SignIn";
 import DashoardAvatar from "../components/dashboard/DashboardAvatar";
 import { ReactComponent as StuDienstLogo } from "../images/Logo_StuDienst.svg";
+import DashboardOproep from "../components/dashboard/DashboardOproep";
 
 var navigation = [
   { name: "Dashboard", icon: HomeIcon, href: "/dashboard" },
-  {
-    name: "Berichten",
-    icon: InboxIcon,
-    href: "/dashboard/berichten",
-  },
   {
     name: "Instellingen",
     icon: AdjustmentsIcon,
     href: "/dashboard/instellingen",
   },
   {
-    name: "Beoordelingen",
+    name: "Oproep plaatsen",
     icon: ClipboardIcon,
-    href: "/dashboard/beoordelingen",
+    href: "/dashboard/oproep",
   },
 ];
 
@@ -59,8 +55,8 @@ export default function Dashboard(props) {
       case "Instellingen":
         setDashboard(<DashboardSettings />);
         break;
-      case "Beoordelingen":
-        setDashboard("");
+      case "Oproep plaatsen":
+        setDashboard(<DashboardOproep />);
         break;
 
       default:

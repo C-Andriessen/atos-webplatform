@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import About from "../pages/About";
 import Contact from "../pages/Contact";
 import Dashboard from "../pages/Dashboard";
 import ForgotPassword from "../pages/ForgotPassword";
@@ -29,8 +30,8 @@ function Routing() {
           element={<Dashboard page={"Berichten"} />}
         />
         <Route
-          path="/dashboard/beoordelingen"
-          element={<Dashboard page={"Beoordelingen"} />}
+          path="/dashboard/oproep"
+          element={<Dashboard page={"Oproep plaatsen"} />}
         />
         <Route path="/login" element={<Signin />} />
         <Route path="/registreer" element={<Register />} />
@@ -43,6 +44,7 @@ function Routing() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/wachtwoordvergeten" element={<ForgotPassword />} />
         <Route path="/herstelwachtwoord" element={<RecoverPassword />} />
+        <Route path="/over-ons" element={<About />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

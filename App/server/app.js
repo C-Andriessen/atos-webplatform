@@ -24,3 +24,4 @@ app.use(express.json());
 
 app.use("/api/user", require("./routers/userRouter"));
 app.use("/api/email", require("./routers/emailRouter"));
+app.use("/api/post", require("./routers/postRouter"));
