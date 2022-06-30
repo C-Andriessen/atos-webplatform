@@ -130,63 +130,37 @@ export default function About() {
           <div className="text-lg max-w-prose mx-auto">
             <h1>
               <span className="block text-base text-center text-primary font-semibold tracking-wide uppercase">
-                over het bedrijf
+                over het platform
               </span>
               <span className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
                 StuDienst
               </span>
             </h1>
             <p className="mt-8 text-xl text-white leading-8">
-              Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem.
-              At arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque id at
-              vitae feugiat egestas ac. Diam nulla orci at in viverra
-              scelerisque eget. Eleifend egestas fringilla sapien.
+              StudDienst is een platform voor studenten en iedereen die een
+              vakman nodig heeft, maar dat misschien niet kan betalen.
             </p>
           </div>
           <div className="mt-6 prose prose-indigo prose-lg text-white mx-auto">
             <p>
-              Faucibus commodo massa rhoncus, volutpat. Mattis mauris semper sed
-              amet vitae sed turpis id. Id dolor praesent donec est. Odio
-              penatibus risus viverra tellus varius sit neque erat velit.
-              Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus
-              enim. sed amet vitae sed turpis id.
+              Als u een klus gedaan moet hebben, maar er geen vakman voor wilt
+              inhuren, dan kunt u hier terecht. Op dit platform helpen studenten
+              u met uw klus, met als enige kosten de materiaalkosten en
+              reiskosten. Hierdoor is het voor u veel goedkoper om een klus te
+              laten doen.
             </p>
-            <ul role="list">
-              <li>Quis elit egestas venenatis mattis dignissim.</li>
-              <li>
-                Cras cras lobortis vitae vivamus ultricies facilisis tempus.
-              </li>
-              <li>Orci in sit morbi dignissim metus diam arcu pretium.</li>
+            <h2 className="text-primary">Waar zorgen we voor</h2>
+            <ul role="lijst">
+              <li>Goedkoop</li>
+              <li>Snel</li>
+              <li>Kwaliteit</li>
             </ul>
-            <p>
-              Quis semper vulputate aliquam venenatis egestas sagittis quisque
-              orci. Donec commodo sit viverra aliquam porttitor ultrices gravida
-              eu. Tincidunt leo, elementum mattis elementum ut nisl, justo,
-              amet, mattis. Nunc purus, diam commodo tincidunt turpis. Amet,
-              duis sed elit interdum dignissim.
-            </p>
-            <h2 className="text-primary">LOREM IPSUMs</h2>
-            <p>
-              Id orci tellus laoreet id ac. Dolor, aenean leo, ac etiam
-              consequat in. Convallis arcu ipsum urna nibh. Pharetra, euismod
-              vitae interdum mauris enim, consequat vulputate nibh. Maecenas
-              pellentesque id sed tellus mauris, ultrices mauris. Tincidunt enim
-              cursus ridiculus mi. Pellentesque nam sed nullam sed diam turpis
-              ipsum eu a sed convallis diam.
-            </p>
             <blockquote>
               <p className="text-primary">
-                Sagittis scelerisque nulla cursus in enim consectetur quam.
-                Dictum urna sed consectetur neque tristique pellentesque.
-                Blandit amet, sed aenean erat arcu morbi.
+                StuDienst biedt mogelijkheden voor studenten, en helpt
+                alledaagse mensen die hulp nodig hebben met een klus
               </p>
             </blockquote>
-            <p>
-              Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus
-              enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor
-              praesent donec est. Odio penatibus risus viverra tellus varius sit
-              neque erat velit.
-            </p>
             <figure>
               <img
                 className="w-full rounded-lg"

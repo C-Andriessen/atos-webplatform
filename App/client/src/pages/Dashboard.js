@@ -17,6 +17,7 @@ import Signin from "./SignIn";
 import DashoardAvatar from "../components/dashboard/DashboardAvatar";
 import { ReactComponent as StuDienstLogo } from "../images/Logo_StuDienst.svg";
 import DashboardOproep from "../components/dashboard/DashboardOproep";
+import DashboardEdit from "../components/dashboard/DashboardEdit";
 
 var navigation = [
   { name: "Dashboard", icon: HomeIcon, href: "/dashboard" },
@@ -57,6 +58,9 @@ export default function Dashboard(props) {
         break;
       case "Oproep plaatsen":
         setDashboard(<DashboardOproep />);
+        break;
+      case "Edit":
+        setDashboard(<DashboardEdit />);
         break;
 
       default:

@@ -34,6 +34,10 @@ function Routing() {
           path="/dashboard/oproep"
           element={<Dashboard page={"Oproep plaatsen"} />}
         />
+        <Route
+          path="/dashboard/edit/:id"
+          element={<Dashboard page={"Edit"} />}
+        />
         <Route path="/login" element={<Signin />} />
         <Route path="/registreer" element={<Register />} />
         <Route path="/scholen" element={<Schools />} />

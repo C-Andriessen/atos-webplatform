@@ -29,7 +29,6 @@ export default function SingleProject() {
   const [data, setData] = useState("");
   useEffect(() => {
     axios.get(`${host}/api/post/single/${id}`).then((res) => {
-      console.log(res);
       if (res.data) {
         setData(res.data);
       }
