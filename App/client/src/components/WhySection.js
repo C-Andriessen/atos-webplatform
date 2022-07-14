@@ -2,20 +2,20 @@ const testimonials = [
   {
     id: 1,
     quote:
-      "My order arrived super quickly. The product is even better than I hoped it would be. Very happy customer over here!",
-    attribution: "Sarah Peters, New Orleans",
+      "De student was heel behulpzaam, en heeft de klus goed gedaan. Het is iets minder professioneel dan een vakman, maar toch heel netjes.",
+    attribution: "Ferdinand Hass, klant",
   },
   {
     id: 2,
     quote:
-      "I had to return a purchase that didn’t fit. The whole process was so simple that I ended up ordering two new items!",
-    attribution: "Kelly McPherson, Chicago",
+      "Ik had moeite met een baan vinden, omdat ik na mijn studie nog geen werkervaring had. Met StuDienst kreeg ik de mogelijkheid om werkervaring op te doen, zonder dat hier al te grote verwachtingen achter zitten.",
+    attribution: "Sarah Batjes, student",
   },
   {
     id: 3,
     quote:
-      "Now that I’m on holiday for the summer, I’ll probably order a few more shirts. It’s just so convenient, and I know the quality will always be there.",
-    attribution: "Chris Paul, Phoenix",
+      "Ik heb geen geld voor een vakman, maar ook geen tijd om de klus zelf te doen. Dankzij StuDienst kan ik toch de klus gedaan krijgen, zonder dat dit pijn doet in de portemonnee",
+    attribution: "Henk Slachter, klant",
   },
 ];
 
@@ -34,7 +34,7 @@ export default function Testimonials() {
               id="testimonial-heading"
               className="text-2xl font-extrabold tracking-tight text-primary"
             >
-              Wat zeggen onze klanten?
+              Wat zeggen onze gebruikers?
             </h2>
 
             <div className="mt-16 space-y-16 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8">

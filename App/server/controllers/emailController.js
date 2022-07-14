@@ -12,32 +12,51 @@ async function confirmEmail(req, res) {
   }
 }
 
-function createAndSendMail(user, email) {
-  var transporter = nodemailer.createTransport({
-    service: "Gmail",
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS,
-    },
-  });
+async function recoverEmail(req, res) {
+  try {
+    const { user } = jwt.verify(req.params.token, process.env.EMAIL_SECRET);
+    const userInDB = await User.findById(user);
+    res.send(userInDB);
+  } catch {
+    res.send("invalid");
+  }
+}
 
-  const emailToken = jwt.sign(
-    {
-      user: user._id,
-    },
-    process.env.EMAIL_SECRET
-  );
+function createAndSendMail(user, email, url, subject, message) {
+  try {
+    var transporter = nodemailer.createTransport({
+      service: "Gmail",
+      auth: {
+        type: "OAUTH2",
+        user: process.env.GMAIL_USER,
+        clientId:
+          "1013134914786-kisfdakt43de8nkm3udffhoegott4sjq.apps.googleusercontent.com",
+        clientSecret: "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",
+        accessToken: "832UEJWDKNSDBVFUERHFIKJ-FJEWDHJFHEJKWDS-FBDJSBNFJDBSJFSD",
+      },
+    });
 
-  const url = `http://localhost:3000/confirm?token=${emailToken}`;
+    const emailToken = jwt.sign(
+      {
+        user: user._id,
+      },
+      process.env.EMAIL_SECRET
+    );
 
-  transporter.sendMail({
-    to: email,
-    subject: "Bevestig email",
-    html: `Klik op deze link om je email te verifi&euml;ren: <a href="${url}">${url}</a>`,
-  });
+    url = `${url}${emailToken}`;
+
+    transporter.sendMail({
+      to: email,
+      subject: subject,
+      html: `${message} <a href="${url}">${url}</a>`,
+    });
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 module.exports = {
   confirmEmail,
   createAndSendMail,
+  recoverEmail,
 };

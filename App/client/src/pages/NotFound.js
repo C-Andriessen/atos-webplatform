@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
+import { ReactComponent as Beeldmerk } from "../images/Beeldmerk_StuDienst.svg";
 
 /* This example requires Tailwind CSS v2.0+ */
 export default function NotFound() {
@@ -10,9 +11,7 @@ export default function NotFound() {
         <main className="flex-grow flex flex-col justify-center max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex-shrink-0 flex justify-center">
             <a href="/" className="inline-flex">
-              <h1 className="text-4xl text-light font-bold">
-                Student<span className="text-primary">IN</span>Werk
-              </h1>
+              <Beeldmerk />
             </a>
           </div>
           <div className="py-16">

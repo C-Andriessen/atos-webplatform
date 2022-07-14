@@ -1,31 +1,9 @@
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-import { useState } from "react";
-import { Switch } from "@headlessui/react";
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
 export default function ContactForm() {
-  const [agreed, setAgreed] = useState(false);
-
   return (
-    <div className="bg-darkmode py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
+    <div
+      className="bg-darkmode py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24"
+      id="contact"
+    >
       <div className="relative max-w-xl mx-auto">
         <svg
           className="absolute left-full transform translate-x-1/2"

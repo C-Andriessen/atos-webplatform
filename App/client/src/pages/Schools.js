@@ -6,14 +6,14 @@ const features = [
   {
     name: "Noorderpoort",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eros magna, pharetra vel vehicula at, facilisis a arcu. Integer tincidunt in metus vel lacinia. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum sed egestas est, tempus convallis dui. Vivamus non dolor et diam laoreet commodo. Morbi turpis dui, ultrices vel fermentum vel, rhoncus malesuada nisi. Ut viverra velit in posuere maximus. Maecenas fringilla ullamcorper nulla, in sagittis arcu molestie vitae. Cras volutpat augue in viverra rutrum. Etiam nec nibh nibh. Nullam eleifend tellus eget ipsum volutpat, interdum aliquet purus interdum.",
+      "Noorderpoort is de plek waar vakmensen leren. Met mbo-opleidingen, cursussen en trainingen. Hier begint je beroep van morgen. En hier kom je terug, voor je werk van vandaag. Want goede vakmensen leren. Altijd.",
     imageSrc: "./images/noorderpoort-temp.jpeg",
     imageAlt: "Noorderpoort",
   },
   {
     name: "Alfa-college",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eros magna, pharetra vel vehicula at, facilisis a arcu. Integer tincidunt in metus vel lacinia. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum sed egestas est, tempus convallis dui. Vivamus non dolor et diam laoreet commodo. Morbi turpis dui, ultrices vel fermentum vel, rhoncus malesuada nisi. Ut viverra velit in posuere maximus. Maecenas fringilla ullamcorper nulla, in sagittis arcu molestie vitae. Cras volutpat augue in viverra rutrum. Etiam nec nibh nibh. Nullam eleifend tellus eget ipsum volutpat, interdum aliquet purus interdum.",
+      "Het Alfa-college leidt jonge mensen en volwassenen op voor de samenleving van nu en straks. Dit doen wij niet alleen, maar in nauwe samenwerking met onze partners in de verschillende regio’s.",
     imageSrc: "./images/alfa-temp.jpeg",
     imageAlt: "Alfa college",
   },

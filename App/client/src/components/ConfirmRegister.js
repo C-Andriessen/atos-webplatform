@@ -49,18 +49,18 @@ export default function ConfirmRegister() {
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        activeer uw email om in te loggen!
+                        U kunt nu inloggen!
                       </p>
                     </div>
                   </div>
                 </div>
                 <div className="mt-5 sm:mt-6">
                   <a
-                    href="/"
+                    href="/login"
                     className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
                     onClick={() => setOpen(false)}
                   >
-                    Ga naar homepage
+                    Ga naar login pagina
                   </a>
                 </div>
               </Dialog.Panel>

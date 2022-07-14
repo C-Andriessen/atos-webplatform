@@ -23,21 +23,17 @@ export default function Hero() {
                     <span className="block text-white">Maak een klus</span>
                     <span className="block text-primary">niet te duur</span>
                   </h1>
-                  <p className="mt-6 max-w-lg mx-auto text-center text-xl text-light sm:max-w-3xl">
-                    Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure
-                    qui lorem cupidatat commodo. Elit sunt amet fugiat veniam
-                    occaecat fugiat aliqua.
-                  </p>
+                  <p className="mt-6 max-w-lg mx-auto text-center text-xl text-light sm:max-w-3xl"></p>
                   <div className="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
                     <div className="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5">
                       <a
-                        href="#"
+                        href="/opdrachten"
                         className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-primary bg-white hover:bg-primary hover:text-white sm:px-8"
                       >
                         Zoek een opdracht
                       </a>
                       <a
-                        href="#"
+                        href="/dashboard/oproep"
                         className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary bg-opacity-60 hover:bg-opacity-70 sm:px-8"
                       >
                         Plaats een opdracht
